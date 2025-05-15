@@ -1,0 +1,24 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+  </Configurations>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="docker-compose.yml" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Vinyanext.Application/Vinyanext.Application.csproj" />
+    <Project Path="src/Vinyanext.Domain/Vinyanext.Domain.csproj" />
+    <Project Path="src/Vinyanext.Infrastructure/Vinyanext.Infrastructure.csproj" />
+    <Project Path="src/Vinyanext.Shared/Vinyanext.Shared.csproj" />
+    <Project Path="src/Vinyanext.WebApi/Vinyanext.WebApi.csproj" />
+    <Project Path="src/Vinyanext.WebApi.Comercial/Vinyanext.WebApi.Comercial.csproj" />
+    <Project Path="src/Vinyanext.WebApi.Compartilhado/Vinyanext.WebApi.Compartilhado.csproj" />
+    <Project Path="src/Vinyanext.WebApi.Contabilidade/Vinyanext.WebApi.Contabilidade.csproj" />
+    <Project Path="src/Vinyanext.WebApi.Pessoal/Vinyanext.WebApi.Pessoal.csproj" />
+    <Project Path="src/Vinyanext.WebApi.Sistema/Vinyanext.WebApi.Sistema.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Vinyanext.Tests/Vinyanext.Tests.csproj" />
+  </Folder>
+</Solution>

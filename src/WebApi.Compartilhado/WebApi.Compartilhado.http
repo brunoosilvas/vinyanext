@@ -1,0 +1,6 @@
+@WebApi.Compartilhado_HostAddress = http://localhost:5281
+
+GET {{WebApi.Compartilhado_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

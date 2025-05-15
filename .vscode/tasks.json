@@ -1,0 +1,18 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "build",
+			"command": "dotnet",
+			"type": "process",
+			"args": [
+			  "build",
+			  "${workspaceFolder}/Vinyanext.slnx",
+			  "-c",
+			  "Debug",
+			  "-p:OutputPath=bin/x64/Debug/net9.0/"
+			],
+			"problemMatcher": "$msCompile"
+		  }
+	]
+}
