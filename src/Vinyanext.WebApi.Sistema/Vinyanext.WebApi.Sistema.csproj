@@ -21,4 +21,10 @@
     <ProjectReference Include="..\Vinyanext.Infrastructure\Vinyanext.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Commons\" />
+    <Folder Include="Infrastructure\" />
+    <Folder Include="Middlewares\" />
+  </ItemGroup>
+
 </Project>

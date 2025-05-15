@@ -35,7 +35,6 @@ internal sealed class TokenProvider(IConfiguration configuration) : ITokenProvid
         var handler = new JsonWebTokenHandler();
 
         string token = handler.CreateToken(tokenDescriptor);
-
         return token;
     }
 }
