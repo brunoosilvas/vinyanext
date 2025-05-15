@@ -1,0 +1,6 @@
+@Vinyanext.WebApi.Almoxarifado_HostAddress = http://localhost:5298
+
+GET {{Vinyanext.WebApi.Almoxarifado_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
