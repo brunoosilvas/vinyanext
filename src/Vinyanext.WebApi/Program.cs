@@ -1,6 +1,8 @@
+using System.Globalization;
 using System.Reflection;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.Localization;
 using Scalar.AspNetCore;
 using Serilog;
 using Vinyanext.Application;
@@ -24,6 +26,27 @@ builder.Services
     .AddEndpoints(Assembly.GetExecutingAssembly());
 
 WebApplication app = builder.Build();
+
+app.UseRequestLocalization(options =>
+{
+    const string defaultCulture = "pt-BR";
+    CultureInfo[] supportedCultures =
+    [
+        new CultureInfo(defaultCulture),
+        new CultureInfo("en-US")
+    ];
+
+    options.DefaultRequestCulture = new RequestCulture(defaultCulture, defaultCulture);
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
+
+    options.RequestCultureProviders =
+    [
+        new AcceptLanguageHeaderRequestCultureProvider()
+    ];
+
+    options.ApplyCurrentCultureToResponseHeaders = true;
+});
 
 app.MapEndpoints();
 

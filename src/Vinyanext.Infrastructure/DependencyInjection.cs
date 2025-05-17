@@ -21,6 +21,7 @@ public static class DependencyInjection
         this IServiceCollection services, IConfiguration configuration, bool isGateway = false)
     {
         services
+            .AddIntercionalizations()
             .AddServices()
             .AddDatabase(configuration);
 
@@ -42,6 +43,13 @@ public static class DependencyInjection
         services.AddSingleton<ITokenProvider, TokenProvider>();
         
         //services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
+        return services;
+    }
+
+    private static IServiceCollection AddIntercionalizations(this IServiceCollection services)
+    {
+        //services.AddLocalization(o => { o. });
+        services.AddLocalization();
         return services;
     }
 
@@ -88,8 +96,6 @@ public static class DependencyInjection
 
         services.AddHttpContextAccessor();
         services.AddScoped<IUserContext, UserContext>();
-        // services.AddSingleton<IPasswordHasher, PasswordHasher>();
-        // services.AddSingleton<ITokenProvider, TokenProvider>();
 
         return services;
     }

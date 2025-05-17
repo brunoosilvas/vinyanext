@@ -8,6 +8,11 @@ internal sealed class GsisUsuarioConfiguration : IEntityTypeConfiguration<GsisUs
 {
     public void Configure(EntityTypeBuilder<GsisUsuario> builder)
     {
-        throw new NotImplementedException();
+        builder.ToTable("gsis_usuario");
+        builder.HasKey(t => t.Id);
+
+        builder.Property(t => t.Id).HasColumnName("id");
+        builder.Property(t => t.Cpf).HasColumnName("cpf");
+        builder.Property(t => t.Senha).HasColumnName("senha");
     }
 }

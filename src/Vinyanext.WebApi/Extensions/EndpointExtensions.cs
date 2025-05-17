@@ -1,6 +1,6 @@
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Vinyanext.WebApi.Endpoints;
+using Vinyanext.Infrastructure.Abstractions.Endpoints;
 
 namespace Vinyanext.WebApi.Extensions;
 

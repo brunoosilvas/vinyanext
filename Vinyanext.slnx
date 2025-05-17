@@ -4,11 +4,14 @@
   </Configurations>
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
+    <File Path=".gitignore" />
     <File Path="docker-compose.yml" />    
   </Folder>
+  <Folder Name="/Solution Items/config/" />
   <Folder Name="/Solution Items/config/postgresql/">
     <File Path="config/postgresql/init.sh" />    
     <File Path="config/postgresql/init.sql" />
+    <File Path="script-vinyanext-01-table.sql" />
   </Folder>
   <Folder Name="/src/">
     <Project Path="src/Vinyanext.Application/Vinyanext.Application.csproj" />

@@ -1,7 +1,7 @@
-using System;
 using MediatR;
+using Vinyanext.Infrastructure.Abstractions.Endpoints;
 
-namespace Vinyanext.WebApi.Sistema.Endpoints.Sistema.GsisUsuario;
+namespace Vinyanext.WebApi.Sistema.Endpoints.GsisUsuario;
 
 internal sealed class Login : IEndpoint
 {

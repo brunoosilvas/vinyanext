@@ -11,12 +11,14 @@ public static class CustomResults
             throw new InvalidOperationException();
         }
 
-        return Results.Problem(
+        IResult newResult = Results.Problem(
             title: GetTitle(result.Error),
             detail: GetDetail(result.Error),
             type: GetType(result.Error.Type),
             statusCode: GetStatusCode(result.Error.Type),
             extensions: GetErrors(result));
+            
+        return newResult;
 
         static string GetTitle(Error error) =>
             error.Type switch
