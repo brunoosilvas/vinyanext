@@ -29,11 +29,11 @@ internal sealed class TokenProvider(IConfiguration configuration) : ITokenProvid
             Expires = DateTime.UtcNow.AddMinutes(configuration.GetValue<int>("Jwt:ExpirationInMinutes")),
             SigningCredentials = credentials,
             Issuer = configuration["Jwt:Issuer"],
-            Audience = configuration["Jwt:Audience"]
+            Audience = configuration["Jwt:Audience"],
         };
 
         var handler = new JsonWebTokenHandler();
-
+        
         string token = handler.CreateToken(tokenDescriptor);
         return token;
     }

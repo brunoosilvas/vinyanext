@@ -9,6 +9,7 @@ using Vinyanext.Application;
 using Vinyanext.Infrastructure;
 using Vinyanext.WebApi;
 using Vinyanext.WebApi.Extensions;
+using Hangfire;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -93,6 +94,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapReverseProxy();
+
+app.UseHangfireDashboard();
 
 await app.RunAsync();
 

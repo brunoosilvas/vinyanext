@@ -2,9 +2,9 @@
 using MediatR;
 using Vinyanext.Application.UseCases.Sistema.Usuario.Login;
 using Vinyanext.Infrastructure.Abstractions.Endpoints;
+using Vinyanext.Shared.Extensions;
 using Vinyanext.Shared.Commons;
 using Vinyanext.WebApi.Commons;
-using Vinyanext.WebApi.Extensions;
 
 namespace Vinyanext.WebApi.Endpoints.Sistema.GsisUsuario;
 

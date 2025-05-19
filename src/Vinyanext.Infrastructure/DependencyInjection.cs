@@ -1,5 +1,6 @@
-using System;
 using System.Text;
+using Hangfire;
+using Hangfire.PostgreSql;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ using Vinyanext.Application.Abstractions.Data;
 using Vinyanext.Infrastructure.Authentication;
 using Vinyanext.Infrastructure.Authorization;
 using Vinyanext.Infrastructure.Database;
+using Vinyanext.Shared.Constants;
 
 namespace Vinyanext.Infrastructure;
 
@@ -21,7 +23,7 @@ public static class DependencyInjection
         this IServiceCollection services, IConfiguration configuration, bool isGateway = false)
     {
         services
-            .AddIntercionalizations()
+            .AddLocalization()
             .AddServices()
             .AddDatabase(configuration);
 
@@ -29,6 +31,7 @@ public static class DependencyInjection
         {
             services
                 .AddHealthChecks(configuration)
+                .AddHangfire(configuration)
                 .AddAuthenticationInternal(configuration)
                 .AddAuthorizationInternal();
         }
@@ -42,25 +45,23 @@ public static class DependencyInjection
         services.AddSingleton<IPasswordHasher, PasswordHasher>();
         services.AddSingleton<ITokenProvider, TokenProvider>();
         
-        //services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
         return services;
     }
 
-    private static IServiceCollection AddIntercionalizations(this IServiceCollection services)
+    private static IServiceCollection AddLocalization(this IServiceCollection services)
     {
-        //services.AddLocalization(o => { o. });
         services.AddLocalization();
         return services;
     }
 
     private static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
     {
-        string? connectionString = configuration.GetConnectionString("PgsqlVinyanextWrite");
+        string? connectionString = configuration.GetConnectionString("PgsqlVinyanext");
 
         services.AddDbContext<ApplicationDbContext>(
             options => options
                 .UseNpgsql(connectionString, npgsqlOptions =>
-                    npgsqlOptions.MigrationsHistoryTable(HistoryRepository.DefaultTableName, "public"))
+                    npgsqlOptions.MigrationsHistoryTable(HistoryRepository.DefaultTableName, Databases.Schema))
                 .UseSnakeCaseNamingConvention());
 
         services.AddScoped<IApplicationDbContext>(sp => sp.GetRequiredService<ApplicationDbContext>());
@@ -72,8 +73,33 @@ public static class DependencyInjection
     {
         services
             .AddHealthChecks()
-            .AddNpgSql(configuration.GetConnectionString("PgsqlVinyanextHealthcheckWrite")!);
+            .AddNpgSql(configuration.GetConnectionString("PgsqlVinyanextHealthcheck")!);
 
+        return services;
+    }
+
+    private static IServiceCollection AddHangfire(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddHangfire(options =>
+        {
+            options
+                .UseSimpleAssemblyNameTypeSerializer()
+                .UseRecommendedSerializerSettings()
+                .UsePostgreSqlStorage(
+                    configure: configure =>
+                    {
+                        configure.UseNpgsqlConnection(configuration.GetConnectionString("PgsqlVinyanextHangfire")!);    
+                    },
+                    options: new PostgreSqlStorageOptions
+                    {
+                        SchemaName = Databases.Schema,
+                        PrepareSchemaIfNecessary = true,
+                    }
+                );
+        });
+           
+        services.AddHangfireServer();
+        
         return services;
     }
 

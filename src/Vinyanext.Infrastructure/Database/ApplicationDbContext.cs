@@ -4,6 +4,7 @@ using Vinyanext.Application.Abstractions.Data;
 using Vinyanext.Domain.Entities.Sistema;
 using Vinyanext.Shared.Abstractions;
 using Vinyanext.Shared.Commons;
+using Vinyanext.Shared.Constants;
 
 namespace Vinyanext.Infrastructure.Database;
 
@@ -16,7 +17,7 @@ public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> 
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
 
-        modelBuilder.HasDefaultSchema("public");
+        modelBuilder.HasDefaultSchema(Databases.Schema);
     }
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

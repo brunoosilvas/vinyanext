@@ -9,6 +9,7 @@ public static class DependencyInjection
         services.AddOpenApi();
 
         services.AddExceptionHandler<GlobalExceptionHandler>();
+        
         services.AddProblemDetails();
 
         return services;

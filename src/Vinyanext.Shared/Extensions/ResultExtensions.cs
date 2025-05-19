@@ -1,6 +1,6 @@
 using Vinyanext.Shared.Commons;
 
-namespace Vinyanext.WebApi.Extensions;
+namespace Vinyanext.Shared.Extensions;
 
 public static class ResultExtensions
 {
