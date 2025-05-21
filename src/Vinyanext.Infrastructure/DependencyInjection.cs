@@ -50,7 +50,7 @@ public static class DependencyInjection
 
     private static IServiceCollection AddLocalization(this IServiceCollection services)
     {
-        services.AddLocalization();
+        services.AddLocalization(o =>  o.ResourcesPath = "Resources" );
         return services;
     }
 
