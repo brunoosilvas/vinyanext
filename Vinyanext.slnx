@@ -5,13 +5,17 @@
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
     <File Path=".gitignore" />
-    <File Path="docker-compose.yml" />    
+    <File Path="docker-compose.yml" />
   </Folder>
   <Folder Name="/Solution Items/config/" />
   <Folder Name="/Solution Items/config/postgresql/">
-    <File Path="config/postgresql/init.sh" />    
+    <File Path="config/postgresql/init.sh" />
     <File Path="config/postgresql/init.sql" />
     <File Path="config/postgresql/script-vinyanext-01-table.sql" />
+  </Folder>
+  <Folder Name="/Solution Items/config/redis/">
+    <File Path="config/redis/redis.conf" />
+    <File Path="config/redis/users.acl" />
   </Folder>
   <Folder Name="/src/">
     <Project Path="src/Vinyanext.Application/Vinyanext.Application.csproj" />

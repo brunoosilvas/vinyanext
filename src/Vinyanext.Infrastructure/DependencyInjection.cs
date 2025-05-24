@@ -5,10 +5,13 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.StackExchangeRedis;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
+using StackExchange.Redis;
 using Vinyanext.Application.Abstractions.Authentication;
 using Vinyanext.Application.Abstractions.Data;
 using Vinyanext.Infrastructure.Authentication;
@@ -59,13 +62,27 @@ public static class DependencyInjection
         return services;
     }
 
-    private static IServiceCollection AddCache(this IServiceCollection service, IConfiguration configuration)
+    private static IServiceCollection AddCache(this IServiceCollection services, IConfiguration configuration)
     {
-        service.AddStackExchangeRedisCache(options =>
+        var redisConfig = new ConfigurationOptions
         {
-            configuration.GetConnectionString("RedisVinyanext");
+            EndPoints = { configuration.GetSection("Redis:Endpoint").Get<string>()! },
+            User = configuration.GetSection("Redis:User").Get<string>()!,
+            Password = configuration.GetSection("Redis:Password").Get<string>()!,
+            AbortOnConnectFail = false
+        };
+
+        services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(redisConfig));
+        services.AddSingleton<IDistributedCache>(serviceProvider =>
+        {
+            var multiplexer = serviceProvider.GetRequiredService<IConnectionMultiplexer>();
+            return new RedisCache(new RedisCacheOptions
+            {
+                ConfigurationOptions = redisConfig,
+                ConnectionMultiplexerFactory = () => Task.FromResult(multiplexer)
+            });
         });
-        return service;
+        return services;
     }
 
     private static IServiceCollection AddMongo(this IServiceCollection services, IConfiguration configuration)
@@ -96,6 +113,9 @@ public static class DependencyInjection
     {
         services
             .AddHealthChecks()
+            .AddRedis(
+                connectionMultiplexerFactory: sp => sp.GetRequiredService<IConnectionMultiplexer>()
+            )
             .AddNpgSql(configuration.GetConnectionString("PgsqlVinyanext")!)
             .AddMongoDb(
                 clientFactory: sp => sp.GetRequiredService<IMongoClient>()
