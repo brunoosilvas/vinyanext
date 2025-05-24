@@ -4,7 +4,7 @@ networks:
       ipam:
          config:
             - subnet: 10.10.0.0/24
-  
+
 services:
    vynpostgresql:
       image: postgres:17.4
@@ -17,13 +17,13 @@ services:
          - ./config/postgresql/init.sql:/docker-entrypoint-initdb.d/init.sql
          - ./config/postgresql/script-vinyanext-01-table.sql:/docker-entrypoint-initdb.d/script-vinyanext-01-table.sql
       environment:
-         POSTGRES_PASSWORD: admin@2025
+         POSTGRES_PASSWORD: admin#2025
       networks:
          vinyanext:
             ipv4_address: 10.10.0.10
    vynseq:
       image: datalust/seq:2025.1.13956-pre
-      container_name: vynseq      
+      container_name: vynseq
       ports:
          - 8081:80
          - 5341:5341
@@ -35,21 +35,28 @@ services:
          vinyanext:
             ipv4_address: 10.10.0.20
    vynmongo:
-      mongo:
-         image: mongo:8.0.10-rc0-noble
-         ports:
-            - 27017:27017
-         volumes:
-            - ./data/mongo/data:/data/db
-         environment:
-            MONGO_INITDB_ROOT_USERNAME: admin
-            MONGO_INITDB_ROOT_PASSWORD: admin@2025
-         networks:
-            vinyanext:
-               ipv4_address: 10.10.0.30
+      image: mongo:8.0.10-rc0-noble
+      container_name: vynmongo
+      ports:
+         - 27017:27017
+      volumes:
+         - ./data/mongo/data:/data/db
+         - ./data/mongo/configdb:/data/configdb
+      environment:
+         MONGO_INITDB_DATABSE: vinyanext
+         MONGO_INITDB_ROOT_USERNAME: vyn
+         MONGO_INITDB_ROOT_PASSWORD: admin#2025
+      networks:
+         vinyanext:
+            ipv4_address: 10.10.0.30
    vynredis:
-      redis:
-         image: redis:8.0.1
-         networks:
-            vinyanext:
-               ipv4_address: 10.10.0.30
+      image: redis:8.0.1
+      container_name: vynredis
+      ports:
+         - 6369:6369
+      volumes:
+         - ./data/redis/data:/data
+      command: ["redis-server", "--appendonly", "yes", "--requirepass", "admin#2025"]
+      networks:
+         vinyanext:
+            ipv4_address: 10.10.0.40

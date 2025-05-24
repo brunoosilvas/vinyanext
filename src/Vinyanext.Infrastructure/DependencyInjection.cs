@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using MongoDB.Driver;
 using Vinyanext.Application.Abstractions.Authentication;
 using Vinyanext.Application.Abstractions.Data;
 using Vinyanext.Infrastructure.Authentication;
@@ -23,11 +24,13 @@ public static class DependencyInjection
         this IServiceCollection services, IConfiguration configuration, bool isGateway = false)
     {
         services
-            .AddLocalization()
             .AddServices()
-            .AddDatabase(configuration);
+            .AddLocalization()
+            .AddCache(configuration)
+            .AddDatabase(configuration)
+            .AddMongo(configuration);
 
-        if (isGateway) 
+        if (isGateway)
         {
             services
                 .AddHealthChecks(configuration)
@@ -38,13 +41,15 @@ public static class DependencyInjection
 
         return services;
     }
-        
-            
+
+
     private static IServiceCollection AddServices(this IServiceCollection services)
     {
         services.AddSingleton<IPasswordHasher, PasswordHasher>();
         services.AddSingleton<ITokenProvider, TokenProvider>();
-        
+
+
+        services.AddDataProtection();
         return services;
     }
 
@@ -53,6 +58,24 @@ public static class DependencyInjection
         services.AddLocalization(o =>  o.ResourcesPath = "Resources" );
         return services;
     }
+
+    private static IServiceCollection AddCache(this IServiceCollection service, IConfiguration configuration)
+    {
+        service.AddStackExchangeRedisCache(options =>
+        {
+            configuration.GetConnectionString("RedisVinyanext");
+        });
+        return service;
+    }
+
+    private static IServiceCollection AddMongo(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddSingleton<IMongoClient>(sp =>
+            new MongoClient(configuration.GetConnectionString("MongoVinyanext"))
+        );
+        return services;
+    }
+
 
     private static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
     {
@@ -73,7 +96,10 @@ public static class DependencyInjection
     {
         services
             .AddHealthChecks()
-            .AddNpgSql(configuration.GetConnectionString("PgsqlVinyanextHealthcheck")!);
+            .AddNpgSql(configuration.GetConnectionString("PgsqlVinyanext")!)
+            .AddMongoDb(
+                clientFactory: sp => sp.GetRequiredService<IMongoClient>()
+            );
 
         return services;
     }
@@ -88,7 +114,7 @@ public static class DependencyInjection
                 .UsePostgreSqlStorage(
                     configure: configure =>
                     {
-                        configure.UseNpgsqlConnection(configuration.GetConnectionString("PgsqlVinyanextHangfire")!);    
+                        configure.UseNpgsqlConnection(configuration.GetConnectionString("PgsqlVinyanextHangfire")!);
                     },
                     options: new PostgreSqlStorageOptions
                     {
@@ -97,9 +123,9 @@ public static class DependencyInjection
                     }
                 );
         });
-           
+
         services.AddHangfireServer();
-        
+
         return services;
     }
 
