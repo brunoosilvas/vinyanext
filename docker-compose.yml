@@ -23,14 +23,33 @@ services:
             ipv4_address: 10.10.0.10
    vynseq:
       image: datalust/seq:2025.1.13956-pre
-      container_name: vynseq
-      environment:
-         - ACCEPT_EULA=Y
+      container_name: vynseq      
       ports:
          - 8081:80
          - 5341:5341
       volumes:
          - ./data/seq/data:/data
+      environment:
+         ACCEPT_EULA: Y
       networks:
          vinyanext:
-            ipv4_address: 10.10.0.11
+            ipv4_address: 10.10.0.20
+   vynmongo:
+      mongo:
+         image: mongo:8.0.10-rc0-noble
+         ports:
+            - 27017:27017
+         volumes:
+            - ./data/mongo/data:/data/db
+         environment:
+            MONGO_INITDB_ROOT_USERNAME: admin
+            MONGO_INITDB_ROOT_PASSWORD: admin@2025
+         networks:
+            vinyanext:
+               ipv4_address: 10.10.0.30
+   vynredis:
+      redis:
+         image: redis:8.0.1
+         networks:
+            vinyanext:
+               ipv4_address: 10.10.0.30
