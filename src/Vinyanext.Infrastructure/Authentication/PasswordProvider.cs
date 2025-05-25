@@ -4,7 +4,7 @@ using Vinyanext.Application.Abstractions.Authentication;
 
 namespace Vinyanext.Infrastructure.Authentication;
 
-internal sealed class PasswordHasher : IPasswordHasher
+internal sealed class PasswordProvider : IPasswordProvider
 {
     private const int SaltSize = 16;
     private const int HashSize = 32;

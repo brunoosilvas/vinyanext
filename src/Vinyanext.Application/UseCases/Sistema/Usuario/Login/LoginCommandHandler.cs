@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Localization;
 using Vinyanext.Application.Abstractions.Authentication;
 using Vinyanext.Application.Abstractions.Data;
@@ -12,9 +13,10 @@ using Vinyanext.Shared.Resources;
 namespace Vinyanext.Application.UseCases.Sistema.Usuario.Login;
 
 public sealed class LoginCommandHandler(
+    IDistributedCache cache,
     IStringLocalizer<I18NResources> localizer,
     IApplicationDbContext context,
-    IPasswordHasher passwordHasher,
+    IPasswordProvider passwordHasher,
     ITokenProvider tokenProvider) : ICommandHandler<LoginCommand, LoginOut>
 {
     public async Task<Result<LoginOut>> Handle(LoginCommand command, CancellationToken cancellationToken)
@@ -22,8 +24,8 @@ public sealed class LoginCommandHandler(
         GsisUsuario? usuario = await context.GsisUsuario
             .AsNoTracking()
             .SingleOrDefaultAsync(u => u.Cpf == command.Login.Cpf, cancellationToken);
-        
-        if (usuario is null) 
+
+        if (usuario is null)
         {
             return Result.Failure<LoginOut>(GsisUsuarioErros.NaoEncontrado(localizer));
         }

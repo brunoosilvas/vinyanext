@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Vinyanext.Domain\Vinyanext.Domain.csproj" />
-    <ProjectReference Include="..\Vinyanext.Shared\Vinyanext.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

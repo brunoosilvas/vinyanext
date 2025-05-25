@@ -14,3 +14,6 @@ dotnet_diagnostic.S3604.severity = none
 
 # S1450: Private fields only used as local variables in methods should become local variables
 dotnet_diagnostic.S1450.severity = none
+
+# CS8604: Possible null reference argument.
+dotnet_diagnostic.CS8604.severity = none

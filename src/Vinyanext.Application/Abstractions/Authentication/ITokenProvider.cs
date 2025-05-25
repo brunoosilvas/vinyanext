@@ -1,4 +1,3 @@
-using System;
 using Vinyanext.Domain.Entities.Sistema;
 
 namespace Vinyanext.Application.Abstractions.Authentication;

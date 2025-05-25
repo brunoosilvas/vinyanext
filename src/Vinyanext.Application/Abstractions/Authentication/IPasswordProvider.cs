@@ -1,8 +1,6 @@
-using System;
-
 namespace Vinyanext.Application.Abstractions.Authentication;
 
-public interface IPasswordHasher
+public interface IPasswordProvider
 {
     string Hash(string password);
 

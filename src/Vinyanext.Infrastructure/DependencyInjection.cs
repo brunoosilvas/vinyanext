@@ -48,7 +48,7 @@ public static class DependencyInjection
 
     private static IServiceCollection AddServices(this IServiceCollection services)
     {
-        services.AddSingleton<IPasswordHasher, PasswordHasher>();
+        services.AddSingleton<IPasswordProvider, PasswordProvider>();
         services.AddSingleton<ITokenProvider, TokenProvider>();
 
 
@@ -92,7 +92,6 @@ public static class DependencyInjection
         );
         return services;
     }
-
 
     private static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
     {

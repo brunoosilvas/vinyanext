@@ -1,18 +1,20 @@
+using System;
 using MediatR;
 using Vinyanext.Infrastructure.Abstractions.Endpoints;
 
-namespace Vinyanext.WebApi.Sistema.Endpoints.GsisUsuario;
+namespace Vinyanext.WebApi.Endpoints.Sistema.GsisUsuario;
 
-internal sealed class Paginar : IEndpoint
+public sealed class Paginar : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapGet("sistema/usuario", async (ISender sender, CancellationToken cancellationToken) =>
+        app.MapGet("/login", async (ISender sender, CancellationToken cancellationToken) =>
         {
             await Task.Delay(0, cancellationToken);
 
             return Results.Ok("ok");
         })
+        .RequireAuthorization()
         .WithDescription("Teste de descrição")
         .WithTags("Sistema / Usuário")
         .WithOpenApi();
