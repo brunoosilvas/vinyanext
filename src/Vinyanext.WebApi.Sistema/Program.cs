@@ -17,14 +17,14 @@ builder.Services
 
 WebApplication app = builder.Build();
 
-app.UsePathBase("/api/sistema");
+app.UsePathBase("/api-sistema");
 
 app.MapEndpoints();
 
 app.MapOpenApi();
 
 app.UseSwaggerUI(options =>
-    options.SwaggerEndpoint("/api/sistema/openapi/v1.json", "Vinyanext Sistema v1"));
+    options.SwaggerEndpoint("/api-sistema/openapi/v1.json", "Vinyanext Sistema v1"));
 
 app.UseReDoc(options => {
     options.RoutePrefix = "re-doc";

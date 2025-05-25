@@ -54,27 +54,41 @@ app.MapEndpoints();
 app.MapOpenApi();
 
 app.UseSwaggerUI(options => {
+
     options.SwaggerEndpoint("/openapi/v1.json", "Vinyanext Gateway v1");
-    options.SwaggerEndpoint("/api/sistema/openapi/v1.json", "Vinyanext Sistema v1");
+    options.SwaggerEndpoint("/api-almoxarifado/openapi/v1.json", "Vinyanext Almoxarifado v1");
+    options.SwaggerEndpoint("/api-sistema/openapi/v1.json", "Vinyanext Sistema v1");
 });
 
-app.UseReDoc(options => {
+app.UseReDoc(options =>
+{
     options.RoutePrefix = "re-doc";
     options.SpecUrl("/openapi/v1.json");
 });
 
 app.UseReDoc(options => {
-    options.RoutePrefix = "re-doc-sistema";
-    options.SpecUrl("/api/sistema/openapi/v1.json");
+    options.RoutePrefix = "re-doc-almoxarifado";
+    options.SpecUrl("/api-almoxarifado/openapi/v1.json");
 });
 
-app.MapScalarApiReference(options => {
+app.UseReDoc(options => {
+    options.RoutePrefix = "re-doc-sistema";
+    options.SpecUrl("/api-sistema/openapi/v1.json");
+});
+
+app.MapScalarApiReference(options =>
+{
     options.OpenApiRoutePattern = "/openapi/v1.json";
     options.CdnUrl = "scalar-doc";
 }).AllowAnonymous();
 
 app.MapScalarApiReference(options => {
-    options.OpenApiRoutePattern = "/api/sistema/openapi/v1.json";
+    options.OpenApiRoutePattern = "/api-almoxarifado/openapi/v1.json";
+    options.CdnUrl = "scalar-doc-almoxarifado";
+}).AllowAnonymous();
+
+app.MapScalarApiReference(options => {
+    options.OpenApiRoutePattern = "/api-sistema/openapi/v1.json";
     options.CdnUrl = "scalar-doc-sistema";
 }).AllowAnonymous();
 

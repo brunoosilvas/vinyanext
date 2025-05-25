@@ -8,13 +8,13 @@ public sealed class Paginar : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapGet("/login", async (ISender sender, CancellationToken cancellationToken) =>
+        app.MapGet("autenticado", async (ISender sender, CancellationToken cancellationToken) =>
         {
             await Task.Delay(0, cancellationToken);
 
             return Results.Ok("ok");
         })
-        .RequireAuthorization()
+        .RequireAuthorization("default", "dsadas")
         .WithDescription("Teste de descrição")
         .WithTags("Sistema / Usuário")
         .WithOpenApi();

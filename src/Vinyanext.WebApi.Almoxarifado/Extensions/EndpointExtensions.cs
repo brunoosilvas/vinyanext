@@ -2,9 +2,9 @@ using System.Reflection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Vinyanext.Infrastructure.Abstractions.Endpoints;
 
-namespace Vinyanext.WebApi.Sistema.Extensions;
+namespace Vinyanext.WebApi.Almoxarifado.Extensions;
 
-public static class EndpointExtension
+public static class EndpointExtensions
 {
     public static IServiceCollection AddEndpoints(this IServiceCollection services, Assembly assembly)
     {
@@ -39,5 +39,4 @@ public static class EndpointExtension
     {
         return app.RequireAuthorization(permission);
     }
-
 }

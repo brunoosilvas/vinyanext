@@ -8,6 +8,23 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.5" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.4.3" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="1.21.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore.ReDoc" Version="8.1.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="8.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Commons\" />
+    <Folder Include="Infrastructure\" />
+    <Folder Include="Middlewares\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Vinyanext.Infrastructure\Vinyanext.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

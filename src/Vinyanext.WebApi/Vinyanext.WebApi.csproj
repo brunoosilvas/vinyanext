@@ -11,15 +11,15 @@
     <PackageReference Include="Hangfire.AspNetCore" Version="1.8.20" />
     <PackageReference Include="Hangfire.Dashboard.Basic.Authentication" Version="7.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.5" />
-    <PackageReference Include="Scalar.AspNetCore" Version="2.3.0" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.4.3" />
     <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
     <PackageReference Include="Serilog.Sinks.Seq" Version="9.0.0" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="1.21.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Swashbuckle.AspNetCore.ReDoc" Version="8.1.1" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="8.1.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.ReDoc" Version="8.1.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="8.1.2" />
     <PackageReference Include="Yarp.ReverseProxy" Version="2.3.0" />
   </ItemGroup>
 

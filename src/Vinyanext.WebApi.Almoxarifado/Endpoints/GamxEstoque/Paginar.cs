@@ -1,19 +1,20 @@
+using System;
 using MediatR;
 using Vinyanext.Infrastructure.Abstractions.Endpoints;
 
-namespace Vinyanext.WebApi.Sistema.Endpoints.GsisUsuario;
+namespace Vinyanext.WebApi.Almoxarifado.Endpoints.GamxEstoque;
 
-internal sealed class Paginar : IEndpoint
+public sealed class Paginar : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapGet("usuario", async (ISender sender, CancellationToken cancellationToken) =>
+        app.MapGet("almoxarifado/estoque", async (ISender sender, CancellationToken cancellationToken) =>
         {
             await Task.Delay(0, cancellationToken);
 
             return Results.Ok("ok");
         })
-        .RequireAuthorization("sistema")
+        .RequireAuthorization("almoxarifado")
         .WithDescription("Teste de descrição")
         .WithTags("Sistema / Usuário")
         .WithOpenApi();

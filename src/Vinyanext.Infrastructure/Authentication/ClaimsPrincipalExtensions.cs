@@ -1,5 +1,6 @@
 using System;
 using System.Security.Claims;
+using Vinyanext.Shared.Errors;
 
 namespace Vinyanext.Infrastructure.Authentication;
 
@@ -11,7 +12,7 @@ internal static class ClaimsPrincipalExtensions
 
         return Guid.TryParse(userId, out Guid parsedUserId) ?
             parsedUserId :
-            throw new ApplicationException("User id is unavailable");
+            throw new AppException("User id is unavailable");
     }
 }
 

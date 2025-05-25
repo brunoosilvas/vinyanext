@@ -10,19 +10,19 @@ using Vinyanext.Domain.Dtos.Out.Sistema;
 namespace Vinyanext.WebApi.Endpoints.Sistema.GsisUsuario;
 
 internal sealed class Login : IEndpoint
-{    
+{
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapPost("login", async (LoginIn request, ISender sender, CancellationToken cancellationToken) => 
+        app.MapPost("login", async (LoginIn request, ISender sender, CancellationToken cancellationToken) =>
         {
             var command = new LoginCommand(request);
-            
+
             Result<LoginOut> result = await sender.Send(command, cancellationToken);
 
             return result.Match(Results.Ok, CustomResults.Problem);
-        }) 
-        .WithDescription("Teste de descrição")                
-        .WithTags("Sistema / Usuário")
+        })
+        .WithDescription("Teste de descrição")
+        .WithTags("Autenticação")
         .WithOpenApi();
     }
 }

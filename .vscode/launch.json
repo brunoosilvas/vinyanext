@@ -5,13 +5,31 @@
     "version": "0.2.0",
     "compounds": [
         {
-            "name": "Vinyanext Development",
-            "configurations": ["GatewayApi", "SistemaApi"]
-        }
+            "name": "Group Vyn Dev All",
+            "configurations": [
+                "Vyn Dev GatewayApi",
+                "Vyn Dev AlmoxarifadoApi",
+                "Vyn Dev SistemaApi"
+            ]
+        },
+        {
+            "name": "Group Vyn Dev Almoxarifado Api",
+            "configurations": [
+                "Vyn Dev GatewayApi",
+                "Vyn Dev AlmoxarifadoApi"
+            ]
+        },
+        {
+            "name": "Group Vyn Dev Sistema Api",
+            "configurations": [
+                "Vyn Dev GatewayApi",
+                "Vyn Dev SistemaApi"
+            ]
+        },
     ],
     "configurations": [
         {
-            "name": "GatewayApi",
+            "name": "Vyn Dev GatewayApi",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
@@ -28,7 +46,24 @@
             }
         },
         {
-            "name": "SistemaApi",
+            "name": "Vyn Dev AlmoxarifadoApi",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/src/Vinyanext.WebApi.Almoxarifado/bin/x64/Debug/net9.0/Vinyanext.WebApi.Almoxarifado.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/Vinyanext.WebApi.Almoxarifado",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        },
+        {
+            "name": "Vyn Dev SistemaApi",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
@@ -44,6 +79,6 @@
                 "ASPNETCORE_ENVIRONMENT": "Development"
             }
         }
-        
+
     ]
 }
