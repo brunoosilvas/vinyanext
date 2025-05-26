@@ -1,8 +1,6 @@
-using System.Globalization;
 using System.Reflection;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using Microsoft.AspNetCore.Localization;
 using Scalar.AspNetCore;
 using Serilog;
 using Vinyanext.Application;
@@ -28,26 +26,7 @@ builder.Services
 
 WebApplication app = builder.Build();
 
-app.UseRequestLocalization(options =>
-{
-    const string defaultCulture = "pt-BR";
-    CultureInfo[] supportedCultures =
-    [
-        new CultureInfo(defaultCulture),
-        new CultureInfo("en-US")
-    ];
-
-    options.DefaultRequestCulture = new RequestCulture(defaultCulture, defaultCulture);
-    options.SupportedCultures = supportedCultures;
-    options.SupportedUICultures = supportedCultures;
-
-    options.RequestCultureProviders =
-    [
-        new AcceptLanguageHeaderRequestCultureProvider()
-    ];
-
-    options.ApplyCurrentCultureToResponseHeaders = true;
-});
+app.UseIntercionalization();
 
 app.MapEndpoints();
 
@@ -62,40 +41,41 @@ app.UseSwaggerUI(options => {
 
 app.UseReDoc(options =>
 {
-    options.RoutePrefix = "re-doc";
+    options.RoutePrefix = "redoc";
     options.SpecUrl("/openapi/v1.json");
 });
 
 app.UseReDoc(options => {
-    options.RoutePrefix = "re-doc-almoxarifado";
+    options.RoutePrefix = "redoc-almoxarifado";
     options.SpecUrl("/api-almoxarifado/openapi/v1.json");
 });
 
 app.UseReDoc(options => {
-    options.RoutePrefix = "re-doc-sistema";
+    options.RoutePrefix = "redoc-sistema";
     options.SpecUrl("/api-sistema/openapi/v1.json");
 });
 
-app.MapScalarApiReference(options =>
+app.MapScalarApiReference("/scalar", options =>
 {
     options.OpenApiRoutePattern = "/openapi/v1.json";
-    options.CdnUrl = "scalar-doc";
-}).AllowAnonymous();
+});
 
-app.MapScalarApiReference(options => {
+app.MapScalarApiReference("/scalar-almoxarifado", options =>
+{
     options.OpenApiRoutePattern = "/api-almoxarifado/openapi/v1.json";
-    options.CdnUrl = "scalar-doc-almoxarifado";
-}).AllowAnonymous();
+});
 
-app.MapScalarApiReference(options => {
+app.MapScalarApiReference("/scalar-sistema", options =>
+{
     options.OpenApiRoutePattern = "/api-sistema/openapi/v1.json";
-    options.CdnUrl = "scalar-doc-sistema";
-}).AllowAnonymous();
+});
 
 app.MapHealthChecks("health", new HealthCheckOptions
 {
     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
 });
+
+app.UseCors();
 
 app.UseRequestContextLogging();
 
@@ -109,7 +89,7 @@ app.UseAuthorization();
 
 app.MapReverseProxy();
 
-app.UseHangfireDashboard();
+app.UseHangfireDashboard(app.Configuration);
 
 await app.RunAsync();
 

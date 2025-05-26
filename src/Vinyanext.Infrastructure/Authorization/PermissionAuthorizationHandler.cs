@@ -27,9 +27,9 @@ internal sealed class PermissionAuthorizationHandler(
         if (context.User is { Identity.IsAuthenticated: true })
         {
             // TODO: Remove this call when you implement the PermissionProvider.GetForUserIdAsync
-            // context.Succeed(requirement);
-            // return;
-            using IServiceScope scope = serviceScopeFactory.CreateScope();
+            context.Succeed(requirement);
+            return;
+            /*using IServiceScope scope = serviceScopeFactory.CreateScope();
 
             PermissionProvider permissionProvider = scope.ServiceProvider.GetRequiredService<PermissionProvider>();
 
@@ -41,7 +41,7 @@ internal sealed class PermissionAuthorizationHandler(
             {
                 context.Succeed(requirement);
                 return;
-            }
+            }*/
         }
 
         context.Fail();

@@ -13,7 +13,8 @@ internal sealed class Paginar : IEndpoint
 
             return Results.Ok("ok");
         })
-        .RequireAuthorization("sistema")
+        //.RequireAuthorization("sistema")
+        .AllowAnonymous()
         .WithDescription("Teste de descrição")
         .WithTags("Sistema / Usuário")
         .WithOpenApi();

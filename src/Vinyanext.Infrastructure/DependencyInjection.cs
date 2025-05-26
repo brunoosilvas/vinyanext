@@ -165,7 +165,6 @@ public static class DependencyInjection
                 };
             });
 
-        services.AddHttpContextAccessor();
         services.AddScoped<IUserContext, UserContext>();
 
         return services;
@@ -173,6 +172,8 @@ public static class DependencyInjection
 
     private static IServiceCollection AddAuthorizationInternal(this IServiceCollection services)
     {
+        services.AddHttpContextAccessor();
+
         services.AddAuthorization();
 
         services.AddScoped<PermissionProvider>();

@@ -17,6 +17,8 @@ builder.Services
 
 WebApplication app = builder.Build();
 
+app.UseIntercionalization();
+
 app.UsePathBase("/api-sistema");
 
 app.MapEndpoints();
@@ -31,8 +33,9 @@ app.UseReDoc(options => {
     options.SpecUrl("/openapi/v1.json");
 });
 
-app.MapScalarApiReference("scalar-doc")
-    .AllowAnonymous();
+app.MapScalarApiReference("scalar-doc");
+
+app.UseCors();
 
 await app.RunAsync();
 
