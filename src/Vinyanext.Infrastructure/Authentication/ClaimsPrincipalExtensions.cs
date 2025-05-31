@@ -1,5 +1,5 @@
 using System.Security.Claims;
-using Vinyanext.Shared.Errors;
+using Vinyanext.Shared.Exceptions;
 
 namespace Vinyanext.Infrastructure.Authentication;
 

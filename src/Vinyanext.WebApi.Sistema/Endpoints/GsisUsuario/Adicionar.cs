@@ -6,8 +6,8 @@ internal sealed class Adicionar : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-
+        // Method intentionally left empty.
     }
-    
+
 }
 

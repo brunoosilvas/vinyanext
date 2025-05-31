@@ -1,6 +1,6 @@
 using System;
 
-namespace Vinyanext.Shared.Errors;
+namespace Vinyanext.Shared.Exceptions;
 
 public class AppException : Exception
 {

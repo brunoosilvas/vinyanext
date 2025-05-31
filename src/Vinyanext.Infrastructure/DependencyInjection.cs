@@ -14,9 +14,11 @@ using MongoDB.Driver;
 using StackExchange.Redis;
 using Vinyanext.Application.Abstractions.Authentication;
 using Vinyanext.Application.Abstractions.Data;
+using Vinyanext.Infrastructure.Abstractions.Services;
 using Vinyanext.Infrastructure.Authentication;
 using Vinyanext.Infrastructure.Authorization;
 using Vinyanext.Infrastructure.Database;
+using Vinyanext.Infrastructure.Services;
 using Vinyanext.Shared.Constants;
 
 namespace Vinyanext.Infrastructure;
@@ -48,11 +50,14 @@ public static class DependencyInjection
 
     private static IServiceCollection AddServices(this IServiceCollection services)
     {
-        services.AddSingleton<IPasswordProvider, PasswordProvider>();
         services.AddSingleton<ITokenProvider, TokenProvider>();
+        services.AddSingleton<IPasswordProvider, PasswordProvider>();
+        services.AddSingleton<IOpenApiService, OpenApiService>();
 
+        services.AddHttpClient();
 
         services.AddDataProtection();
+
         return services;
     }
 
@@ -177,8 +182,8 @@ public static class DependencyInjection
         services.AddAuthorization();
 
         services.AddScoped<PermissionProvider>();
-        services.AddTransient<IAuthorizationHandler, PermissionAuthorizationHandler>();
         services.AddTransient<IAuthorizationPolicyProvider, PermissionAuthorizationPolicyProvider>();
+        services.AddTransient<IAuthorizationHandler, PermissionAuthorizationHandler>();
 
         return services;
     }

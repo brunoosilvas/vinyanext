@@ -39,6 +39,9 @@ public sealed class LoginCommandHandler(
             return Result.Failure<LoginOut>(GsisUsuarioErros.NaoAutorizado(localizer));
         }
 
+
+
+
         LoginOut login = new(
             Token: tokenProvider.Create(usuario),
             RefreshToken: string.Empty

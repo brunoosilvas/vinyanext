@@ -1,0 +1,6 @@
+@Vinyanext.WebApi.Gestao.Voucher_HostAddress = http://localhost:5242
+
+GET {{Vinyanext.WebApi.Gestao.Voucher_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -14,14 +14,14 @@ internal sealed class PermissionAuthorizationHandler(
         AuthorizationHandlerContext context,
         PermissionRequirement requirement)
     {
-        HttpContext httpContext = httpContextAccessor.HttpContext;
+        // HttpContext httpContext = httpContextAccessor.HttpContext;
 
-        if (httpContext != null &&
-            httpContext.Request.Path.Value.EndsWith("openapi/v1.json", StringComparison.OrdinalIgnoreCase))
-        {
-            context.Succeed(requirement);
-            return;
-        }
+        // if (httpContext != null &&
+        //     httpContext.Request.Path.Value.EndsWith("openapi/v1.json", StringComparison.OrdinalIgnoreCase))
+        // {
+        //     context.Succeed(requirement);
+        //     return;
+        // }
 
         // Implementar anonymous sem autorization
 

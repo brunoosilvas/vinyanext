@@ -8,6 +8,7 @@ using Vinyanext.Infrastructure;
 using Vinyanext.WebApi;
 using Vinyanext.WebApi.Extensions;
 using Hangfire;
+using Vinyanext.Infrastructure.Abstractions.Services;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 

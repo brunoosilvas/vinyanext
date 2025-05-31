@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "compounds": [
         {
-            "name": "Group Vyn Dev All",
+            "name": "Vyn Dev Group All",
             "configurations": [
                 "Vyn Dev GatewayApi",
                 "Vyn Dev AlmoxarifadoApi",
@@ -13,14 +13,14 @@
             ]
         },
         {
-            "name": "Group Vyn Dev Almoxarifado Api",
+            "name": "Vyn Dev Group Almoxarifado Api",
             "configurations": [
                 "Vyn Dev GatewayApi",
                 "Vyn Dev AlmoxarifadoApi"
             ]
         },
         {
-            "name": "Group Vyn Dev Sistema Api",
+            "name": "Vyn Dev Group Sistema Api",
             "configurations": [
                 "Vyn Dev GatewayApi",
                 "Vyn Dev SistemaApi"

@@ -6,6 +6,7 @@
     <File Path=".editorconfig" />
     <File Path=".gitignore" />
     <File Path="docker-compose.yml" />
+    <File Path="vinyanext-erp.erd" />
   </Folder>
   <Folder Name="/Solution Items/config/" />
   <Folder Name="/Solution Items/config/postgresql/">
@@ -29,6 +30,8 @@
     <Project Path="src/Vinyanext.WebApi.Compras/Vinyanext.WebApi.Compras.csproj" />
     <Project Path="src/Vinyanext.WebApi.Contabilidade/Vinyanext.WebApi.Contabilidade.csproj" />
     <Project Path="src/Vinyanext.WebApi.Financeiro/Vinyanext.WebApi.Financeiro.csproj" />
+    <Project Path="src/Vinyanext.WebApi.Gestao.Voucher.Publico/Vinyanext.WebApi.Gestao.Voucher.Publico.csproj" />
+    <Project Path="src/Vinyanext.WebApi.Gestao.Voucher/Vinyanext.WebApi.Gestao.Voucher.csproj" />
     <Project Path="src/Vinyanext.WebApi.Pessoal/Vinyanext.WebApi.Pessoal.csproj" />
     <Project Path="src/Vinyanext.WebApi.Sistema/Vinyanext.WebApi.Sistema.csproj" />
   </Folder>

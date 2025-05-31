@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Localization;
 using Vinyanext.Application.Abstractions.Authentication;
-using Vinyanext.Shared.Errors;
+using Vinyanext.Shared.Exceptions;
 using Vinyanext.Shared.Resources;
 
 namespace Vinyanext.Infrastructure.Authentication;
