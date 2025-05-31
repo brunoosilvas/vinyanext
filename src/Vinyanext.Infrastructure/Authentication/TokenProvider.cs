@@ -1,5 +1,3 @@
-using System;
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Configuration;
@@ -23,8 +21,9 @@ internal sealed class TokenProvider(IConfiguration configuration) : ITokenProvid
         {
             Subject = new ClaimsIdentity(
             [
-                //new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-                //new Claim(JwtRegisteredClaimNames.Email, user.Email)
+                //revisar
+                new Claim(JwtRegisteredClaimNames.Sub, usuario.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.Email, string.Empty)
             ]),
             Expires = DateTime.UtcNow.AddMinutes(configuration.GetValue<int>("Jwt:ExpirationInMinutes")),
             SigningCredentials = credentials,
@@ -33,7 +32,7 @@ internal sealed class TokenProvider(IConfiguration configuration) : ITokenProvid
         };
 
         var handler = new JsonWebTokenHandler();
-        
+
         string token = handler.CreateToken(tokenDescriptor);
         return token;
     }

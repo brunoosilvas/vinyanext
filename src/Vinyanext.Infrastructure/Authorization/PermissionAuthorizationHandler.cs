@@ -23,17 +23,17 @@ internal sealed class PermissionAuthorizationHandler(
             return;
         }
 
+        // Implementar anonymous sem autorization
+
         // TODO: You definitely want to reject unauthenticated users here.
         if (context.User is { Identity.IsAuthenticated: true })
         {
             // TODO: Remove this call when you implement the PermissionProvider.GetForUserIdAsync
-            context.Succeed(requirement);
-            return;
-            /*using IServiceScope scope = serviceScopeFactory.CreateScope();
+            using IServiceScope scope = serviceScopeFactory.CreateScope();
 
             PermissionProvider permissionProvider = scope.ServiceProvider.GetRequiredService<PermissionProvider>();
 
-            Guid userId = context.User.GetUserId();
+            int? userId = context.User.GetUserId();
 
             HashSet<string> permissions = await permissionProvider.GetForUserIdAsync(userId);
 
@@ -41,7 +41,7 @@ internal sealed class PermissionAuthorizationHandler(
             {
                 context.Succeed(requirement);
                 return;
-            }*/
+            }
         }
 
         context.Fail();

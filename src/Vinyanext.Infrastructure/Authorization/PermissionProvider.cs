@@ -4,10 +4,12 @@ namespace Vinyanext.Infrastructure.Authorization;
 
 internal sealed class PermissionProvider
 {
-    public Task<HashSet<string>> GetForUserIdAsync(Guid userId)
+    public Task<HashSet<string>> GetForUserIdAsync(int? userId)
     {
         // TODO: Here you'll implement your logic to fetch permissions.
-        HashSet<string> permissionsSet = [];
+        HashSet<string> permissionsSet = [
+            "default"
+        ];
 
         return Task.FromResult(permissionsSet);
     }

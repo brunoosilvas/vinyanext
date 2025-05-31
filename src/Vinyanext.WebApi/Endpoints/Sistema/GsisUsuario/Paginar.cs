@@ -14,9 +14,9 @@ public sealed class Paginar : IEndpoint
 
             return Results.Ok("ok");
         })
-        .RequireAuthorization("default", "dsadas")
-        .WithDescription("Teste de descrição")
         .WithTags("Sistema / Usuário")
+        .WithDescription("Teste de descrição")
+        .WithSummary("default, sistema")
         .WithOpenApi();
     }
 }

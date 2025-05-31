@@ -26,6 +26,8 @@ builder.Services
 
 WebApplication app = builder.Build();
 
+app.UsePathBase("/api");
+
 app.UseIntercionalization();
 
 app.MapEndpoints();
@@ -33,7 +35,6 @@ app.MapEndpoints();
 app.MapOpenApi();
 
 app.UseSwaggerUI(options => {
-
     options.SwaggerEndpoint("/openapi/v1.json", "Vinyanext Gateway v1");
     options.SwaggerEndpoint("/api-almoxarifado/openapi/v1.json", "Vinyanext Almoxarifado v1");
     options.SwaggerEndpoint("/api-sistema/openapi/v1.json", "Vinyanext Sistema v1");
