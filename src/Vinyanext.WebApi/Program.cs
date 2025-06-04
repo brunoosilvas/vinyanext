@@ -8,7 +8,6 @@ using Vinyanext.Infrastructure;
 using Vinyanext.WebApi;
 using Vinyanext.WebApi.Extensions;
 using Hangfire;
-using Vinyanext.Infrastructure.Abstractions.Services;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -38,8 +37,12 @@ app.MapOpenApi();
 app.UseSwaggerUI(options => {
     options.SwaggerEndpoint("/openapi/v1.json", "Vinyanext Gateway v1");
     options.SwaggerEndpoint("/api-almoxarifado/openapi/v1.json", "Vinyanext Almoxarifado v1");
+    options.SwaggerEndpoint("/api-gestao-voucher/openapi/v1.json", "Vinyanext Gestão Voucher v1");
+    options.SwaggerEndpoint("/api-gestao-voucher-publico/openapi/v1.json", "Vinyanext Gestão Voucher Público v1");
     options.SwaggerEndpoint("/api-sistema/openapi/v1.json", "Vinyanext Sistema v1");
 });
+
+// Redoc
 
 app.UseReDoc(options =>
 {
@@ -52,10 +55,25 @@ app.UseReDoc(options => {
     options.SpecUrl("/api-almoxarifado/openapi/v1.json");
 });
 
+app.UseReDoc(options =>
+{
+    options.RoutePrefix = "redoc-gestao-voucher";
+    options.SpecUrl("/api-gestao-voucher/openapi/v1.json");
+});
+
+app.UseReDoc(options =>
+{
+    options.RoutePrefix = "redoc-gestao-voucher-publico";
+    options.SpecUrl("/api-gestao-voucher-publico/openapi/v1.json");
+});
+
 app.UseReDoc(options => {
     options.RoutePrefix = "redoc-sistema";
     options.SpecUrl("/api-sistema/openapi/v1.json");
 });
+
+
+// Scalar
 
 app.MapScalarApiReference("/scalar", options =>
 {
@@ -67,10 +85,22 @@ app.MapScalarApiReference("/scalar-almoxarifado", options =>
     options.OpenApiRoutePattern = "/api-almoxarifado/openapi/v1.json";
 });
 
+app.MapScalarApiReference("/scalar-gestao-voucher", options =>
+{
+    options.OpenApiRoutePattern = "/api-gestao-voucher/openapi/v1.json";
+});
+
+app.MapScalarApiReference("/scalar-gestao-voucher-publico", options =>
+{
+    options.OpenApiRoutePattern = "/api-gestao-voucher-publico/openapi/v1.json";
+});
+
 app.MapScalarApiReference("/scalar-sistema", options =>
 {
     options.OpenApiRoutePattern = "/api-sistema/openapi/v1.json";
 });
+
+// Others
 
 app.MapHealthChecks("health", new HealthCheckOptions
 {

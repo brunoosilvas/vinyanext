@@ -1,6 +1,6 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Vinyanext.Application.Abstractions.Data;
+using Vinyanext.Application.Abstractions.Database;
 using Vinyanext.Domain.Entities.Sistema;
 using Vinyanext.Shared.Abstractions;
 using Vinyanext.Shared.Commons;
@@ -9,9 +9,9 @@ using Vinyanext.Shared.Constants;
 namespace Vinyanext.Infrastructure.Database;
 
 public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IPublisher publisher)
-    : DbContext(options), IApplicationDbContext
+    : DbContext(options), IApplicationDbContextBase
 {
-    public DbSet<GsisUsuario> GsisUsuario { get; set; }
+    public DbSet<GsisUsuario> GsisUsuario { get; private set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

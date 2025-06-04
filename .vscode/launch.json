@@ -20,6 +20,14 @@
             ]
         },
         {
+            "name": "Vyn Dev Group Gestão Voucher Api",
+            "configurations": [
+                "Vyn Dev GatewayApi",
+                "Vyn Dev GestaoVoucherApi",
+                "Vyn Dev GestaoVoucherPublicoApi"
+            ]
+        },
+        {
             "name": "Vyn Dev Group Sistema Api",
             "configurations": [
                 "Vyn Dev GatewayApi",
@@ -54,10 +62,32 @@
             "args": [],
             "cwd": "${workspaceFolder}/src/Vinyanext.WebApi.Almoxarifado",
             "stopAtEntry": false,
-            "serverReadyAction": {
-                "action": "openExternally",
-                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
-            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        },
+        {
+            "name": "Vyn Dev GestaoVoucherApi",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/src/Vinyanext.WebApi.Gestao.Voucher/bin/x64/Debug/net9.0/Vinyanext.WebApi.Gestao.Voucher.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/Vinyanext.WebApi.Gestao.Voucher",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        },
+        {
+            "name": "Vyn Dev GestaoVoucherPublicoApi",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/src/Vinyanext.WebApi.Gestao.Voucher.Publico/bin/x64/Debug/net9.0/Vinyanext.WebApi.Gestao.Voucher.Publico.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/Vinyanext.WebApi.Gestao.Voucher.Publico",
+            "stopAtEntry": false,
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
             }
@@ -71,10 +101,6 @@
             "args": [],
             "cwd": "${workspaceFolder}/src/Vinyanext.WebApi.Sistema",
             "stopAtEntry": false,
-            "serverReadyAction": {
-                "action": "openExternally",
-                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
-            },
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
             }

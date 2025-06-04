@@ -26,14 +26,14 @@ app.MapEndpoints();
 app.MapOpenApi();
 
 app.UseSwaggerUI(options =>
-    options.SwaggerEndpoint("/api-sistema/openapi/v1.json", "Vinyanext Sistema v1"));
+    options.SwaggerEndpoint("openapi/v1.json", "Vinyanext Sistema v1"));
 
 app.UseReDoc(options => {
-    options.RoutePrefix = "re-doc";
+    options.RoutePrefix = "redoc";
     options.SpecUrl("/openapi/v1.json");
 });
 
-app.MapScalarApiReference("scalar-doc");
+app.MapScalarApiReference("scalar");
 
 app.UseCors();
 

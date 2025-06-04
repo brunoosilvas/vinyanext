@@ -1,6 +1,9 @@
+using System.Reflection;
 using Scalar.AspNetCore;
 using Vinyanext.Application;
 using Vinyanext.Infrastructure;
+using Vinyanext.WebApi.Gestao.Voucher.Publico;
+using Vinyanext.WebApi.Gestao.Voucher.Publico.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,21 +19,21 @@ WebApplication app = builder.Build();
 
 app.UseIntercionalization();
 
-app.UsePathBase("/api-sistema");
+app.UsePathBase("/api-gestao-voucher-publico");
 
 app.MapEndpoints();
 
 app.MapOpenApi();
 
 app.UseSwaggerUI(options =>
-    options.SwaggerEndpoint("/api-sistema/openapi/v1.json", "Vinyanext Sistema v1"));
+    options.SwaggerEndpoint("/openapi/v1.json", "Vinyanext Gestão Voucher Público v1"));
 
 app.UseReDoc(options => {
-    options.RoutePrefix = "re-doc";
+    options.RoutePrefix = "redoc";
     options.SpecUrl("/openapi/v1.json");
 });
 
-app.MapScalarApiReference("scalar-doc");
+app.MapScalarApiReference("scalar");
 
 app.UseCors();
 

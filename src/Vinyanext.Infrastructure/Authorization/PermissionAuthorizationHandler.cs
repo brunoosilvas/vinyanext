@@ -2,6 +2,7 @@ using Vinyanext.Infrastructure.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Http;
+using Vinyanext.Shared.Constants;
 
 namespace Vinyanext.Infrastructure.Authorization;
 
@@ -14,14 +15,14 @@ internal sealed class PermissionAuthorizationHandler(
         AuthorizationHandlerContext context,
         PermissionRequirement requirement)
     {
-        // HttpContext httpContext = httpContextAccessor.HttpContext;
+        HttpContext httpContext = httpContextAccessor.HttpContext;
 
-        // if (httpContext != null &&
-        //     httpContext.Request.Path.Value.EndsWith("openapi/v1.json", StringComparison.OrdinalIgnoreCase))
-        // {
-        //     context.Succeed(requirement);
-        //     return;
-        // }
+        if (Polices.Publico.Equals(requirement.Permission) ||
+            httpContext.Request.Path.Value.EndsWith("openapi/v1.json", StringComparison.OrdinalIgnoreCase))
+        {
+            context.Succeed(requirement);
+            return;
+        }
 
         // Implementar anonymous sem autorization
 

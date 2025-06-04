@@ -13,7 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
 using StackExchange.Redis;
 using Vinyanext.Application.Abstractions.Authentication;
-using Vinyanext.Application.Abstractions.Data;
+using Vinyanext.Application.Abstractions.Database;
 using Vinyanext.Infrastructure.Abstractions.Services;
 using Vinyanext.Infrastructure.Authentication;
 using Vinyanext.Infrastructure.Authorization;
@@ -83,6 +83,7 @@ public static class DependencyInjection
             var multiplexer = serviceProvider.GetRequiredService<IConnectionMultiplexer>();
             return new RedisCache(new RedisCacheOptions
             {
+                InstanceName = $"vyn-{configuration.GetValue<string>("Env")?.ToLower()}-",
                 ConfigurationOptions = redisConfig,
                 ConnectionMultiplexerFactory = () => Task.FromResult(multiplexer)
             });
@@ -108,7 +109,7 @@ public static class DependencyInjection
                     npgsqlOptions.MigrationsHistoryTable(HistoryRepository.DefaultTableName, Databases.Schema))
                 .UseSnakeCaseNamingConvention());
 
-        services.AddScoped<IApplicationDbContext>(sp => sp.GetRequiredService<ApplicationDbContext>());
+        services.AddScoped<IApplicationDbContextBase>(sp => sp.GetRequiredService<ApplicationDbContext>());
 
         return services;
     }

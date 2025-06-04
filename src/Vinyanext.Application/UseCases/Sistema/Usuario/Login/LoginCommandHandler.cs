@@ -2,8 +2,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Localization;
 using Vinyanext.Application.Abstractions.Authentication;
-using Vinyanext.Application.Abstractions.Data;
+using Vinyanext.Application.Abstractions.Database;
 using Vinyanext.Application.Abstractions.Messaging;
+using Vinyanext.Application.Abstractions.Services.Sistema;
 using Vinyanext.Domain.Dtos.Out.Sistema;
 using Vinyanext.Domain.Entities.Sistema;
 using Vinyanext.Domain.Validations.Sistema;
@@ -15,22 +16,28 @@ namespace Vinyanext.Application.UseCases.Sistema.Usuario.Login;
 public sealed class LoginCommandHandler(
     IDistributedCache cache,
     IStringLocalizer<I18NResources> localizer,
-    IApplicationDbContext context,
     IPasswordProvider passwordHasher,
-    ITokenProvider tokenProvider) : ICommandHandler<LoginCommand, LoginOut>
+    ITokenProvider tokenProvider,
+    IApplicationDbContextBase context,
+    ILoginService loginService) : ICommandHandler<LoginCommand, LoginOut>
 {
     public async Task<Result<LoginOut>> Handle(LoginCommand command, CancellationToken cancellationToken)
     {
+        var tt = await loginService
+            .Set<ILoginService>(context)
+            .Login("", "");
+
+        //loginService.Set(context).
+        //loginService.Set(context).Login
+
         GsisUsuario? usuario = await context.GsisUsuario
             .AsNoTracking()
-            .SingleOrDefaultAsync(u => u.Cpf == command.Login.Cpf, cancellationToken);
+            .FirstOrDefaultAsync(u => u.Cpf == command.Login.Cpf, cancellationToken);
 
         if (usuario is null)
         {
             return Result.Failure<LoginOut>(GsisUsuarioErros.NaoEncontrado(localizer));
         }
-
-        var teste = passwordHasher.Hash(command.Login.Senha);
 
         bool saoIguais = passwordHasher.Verify(command.Login.Senha, usuario.Senha);
 
@@ -39,12 +46,17 @@ public sealed class LoginCommandHandler(
             return Result.Failure<LoginOut>(GsisUsuarioErros.NaoAutorizado(localizer));
         }
 
+        Guid guid = Guid.NewGuid();
 
+        try
+        {
 
+        }
+        catch (Exception) { }
 
         LoginOut login = new(
             Token: tokenProvider.Create(usuario),
-            RefreshToken: string.Empty
+            RefreshToken: guid.ToString()
         );
         return login;
     }

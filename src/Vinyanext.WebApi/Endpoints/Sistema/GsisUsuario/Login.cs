@@ -21,6 +21,7 @@ internal sealed class Login : IEndpoint
 
             return result.Match(Results.Ok, CustomResults.Problem);
         })
+        .AllowAnonymous()
         .WithTags("Autenticação")
         .WithDescription("Teste de descrição")
         .WithSummary("anonymous")

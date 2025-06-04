@@ -26,7 +26,6 @@
     <Project Path="src/Vinyanext.WebApi/Vinyanext.WebApi.csproj" />
     <Project Path="src/Vinyanext.WebApi.Almoxarifado/Vinyanext.WebApi.Almoxarifado.csproj" />
     <Project Path="src/Vinyanext.WebApi.Comercial/Vinyanext.WebApi.Comercial.csproj" />
-    <Project Path="src/Vinyanext.WebApi.Compartilhado/Vinyanext.WebApi.Compartilhado.csproj" />
     <Project Path="src/Vinyanext.WebApi.Compras/Vinyanext.WebApi.Compras.csproj" />
     <Project Path="src/Vinyanext.WebApi.Contabilidade/Vinyanext.WebApi.Contabilidade.csproj" />
     <Project Path="src/Vinyanext.WebApi.Financeiro/Vinyanext.WebApi.Financeiro.csproj" />

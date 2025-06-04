@@ -10,9 +10,4 @@
     <ProjectReference Include="..\Vinyanext.Shared\Vinyanext.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\" />
-    <Folder Include="Services\Sistema\" />
-  </ItemGroup>
-
 </Project>

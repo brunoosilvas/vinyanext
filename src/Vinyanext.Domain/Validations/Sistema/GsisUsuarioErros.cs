@@ -4,7 +4,7 @@ using Vinyanext.Shared.Resources;
 
 namespace Vinyanext.Domain.Validations.Sistema;
 
-public class GsisUsuarioErros
+public static class GsisUsuarioErros
 {
     public static Error NaoEncontrado(IStringLocalizer<I18NResources> localizer) => Error.NotFound(
         "GsisUsuario.NaoEncontrato",
