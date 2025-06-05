@@ -3,7 +3,7 @@ using Vinyanext.Domain.Entities.Sistema;
 
 namespace Vinyanext.Application.Abstractions.Database;
 
-public interface IApplicationDbContextBase
+public interface IApplicationDbContextBase : IDisposable
 {
     DbSet<GsisUsuario> GsisUsuario { get; }
 

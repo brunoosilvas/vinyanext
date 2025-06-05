@@ -18,17 +18,17 @@ public sealed class LoginCommandHandler(
     IStringLocalizer<I18NResources> localizer,
     IPasswordProvider passwordHasher,
     ITokenProvider tokenProvider,
-    IApplicationDbContextBase context,
+    ChangeDbContext changeDbContext,
     ILoginService loginService) : ICommandHandler<LoginCommand, LoginOut>
 {
     public async Task<Result<LoginOut>> Handle(LoginCommand command, CancellationToken cancellationToken)
     {
+        using var context = changeDbContext(DbType.PgsqlVinyanextWrite);
+
         var tt = await loginService
             .Set<ILoginService>(context)
-            .Login("", "");
+            .Login("", "", cancellationToken);
 
-        //loginService.Set(context).
-        //loginService.Set(context).Login
 
         GsisUsuario? usuario = await context.GsisUsuario
             .AsNoTracking()

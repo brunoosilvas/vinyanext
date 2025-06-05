@@ -109,7 +109,17 @@ public static class DependencyInjection
                     npgsqlOptions.MigrationsHistoryTable(HistoryRepository.DefaultTableName, Databases.Schema))
                 .UseSnakeCaseNamingConvention());
 
-        services.AddScoped<IApplicationDbContextBase>(sp => sp.GetRequiredService<ApplicationDbContext>());
+        services.AddTransient<IApplicationDbContextBase>(sp => sp.GetRequiredService<ApplicationDbContext>());
+        services.AddTransient<ChangeDbContext>(sp => dbType =>
+        {
+            IApplicationDbContextBase context = dbType switch
+            {
+                DbType.PgsqlVinyanextWrite => sp.GetRequiredService<IApplicationDbContextBase>(),
+                DbType.PgsqlVinyanexRead => sp.GetRequiredService<IApplicationDbContextBase>(),
+                _ => sp.GetRequiredService<IApplicationDbContextBase>()
+            };
+            return context;
+        });
 
         return services;
     }

@@ -5,6 +5,6 @@ namespace Vinyanext.Application.Abstractions.Services.Sistema;
 
 public interface ILoginService : IServiceBase
 {
-    Task<Result<LoginOut>> Login(string cpf, string senha);
+    Task<Result<LoginOut>> Login(string cpf, string senha, CancellationToken cancellationToken);
 
 }

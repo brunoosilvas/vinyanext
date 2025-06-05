@@ -21,7 +21,7 @@ public static class DependencyInjection
 
         services.AddValidatorsFromAssembly(typeof(DependencyInjection).Assembly, includeInternalTypes: true);
 
-        services.AddTransient<ILoginService, LoginService>();
+        services.AddScoped<ILoginService, LoginService>();
 
         return services;
     }
