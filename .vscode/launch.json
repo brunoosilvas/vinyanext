@@ -13,6 +13,13 @@
             ]
         },
         {
+            "name": "Vyn Dev Group Sistema Api",
+            "configurations": [
+                "Vyn Dev GatewayApi",
+                "Vyn Dev SistemaApi"
+            ]
+        },
+        {
             "name": "Vyn Dev Group Almoxarifado Api",
             "configurations": [
                 "Vyn Dev GatewayApi",
@@ -25,13 +32,6 @@
                 "Vyn Dev GatewayApi",
                 "Vyn Dev GestaoVoucherApi",
                 "Vyn Dev GestaoVoucherPublicoApi"
-            ]
-        },
-        {
-            "name": "Vyn Dev Group Sistema Api",
-            "configurations": [
-                "Vyn Dev GatewayApi",
-                "Vyn Dev SistemaApi"
             ]
         },
     ],
@@ -49,6 +49,19 @@
                 "action": "openExternally",
                 "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
             },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        },
+        {
+            "name": "Vyn Dev SistemaApi",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/src/Vinyanext.WebApi.Sistema/bin/x64/Debug/net9.0/Vinyanext.WebApi.Sistema.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/Vinyanext.WebApi.Sistema",
+            "stopAtEntry": false,
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
             }
@@ -91,20 +104,6 @@
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
             }
-        },
-        {
-            "name": "Vyn Dev SistemaApi",
-            "type": "coreclr",
-            "request": "launch",
-            "preLaunchTask": "build",
-            "program": "${workspaceFolder}/src/Vinyanext.WebApi.Sistema/bin/x64/Debug/net9.0/Vinyanext.WebApi.Sistema.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/src/Vinyanext.WebApi.Sistema",
-            "stopAtEntry": false,
-            "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development"
-            }
         }
-
     ]
 }

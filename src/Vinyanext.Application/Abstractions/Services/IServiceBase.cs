@@ -2,13 +2,13 @@ using Vinyanext.Application.Abstractions.Database;
 
 namespace Vinyanext.Application.Abstractions.Services;
 
-public interface IServiceBase
+public interface IServiceBase<T>
 {
     IApplicationDbContextBase Context { get; set; }
 
-    T? Set<T>(IApplicationDbContextBase context)
+    T Set(IApplicationDbContextBase context)
     {
-        Context = context;
-        return (T?)this;
+        Context = context ?? throw new ArgumentNullException(nameof(context));
+        return (T)this;
     }
 }

@@ -24,15 +24,31 @@
     <Project Path="src/Vinyanext.Infrastructure/Vinyanext.Infrastructure.csproj" />
     <Project Path="src/Vinyanext.Shared/Vinyanext.Shared.csproj" />
     <Project Path="src/Vinyanext.WebApi/Vinyanext.WebApi.csproj" />
-    <Project Path="src/Vinyanext.WebApi.Almoxarifado/Vinyanext.WebApi.Almoxarifado.csproj" />
-    <Project Path="src/Vinyanext.WebApi.Comercial/Vinyanext.WebApi.Comercial.csproj" />
-    <Project Path="src/Vinyanext.WebApi.Compras/Vinyanext.WebApi.Compras.csproj" />
-    <Project Path="src/Vinyanext.WebApi.Contabilidade/Vinyanext.WebApi.Contabilidade.csproj" />
-    <Project Path="src/Vinyanext.WebApi.Financeiro/Vinyanext.WebApi.Financeiro.csproj" />
-    <Project Path="src/Vinyanext.WebApi.Gestao.Voucher.Publico/Vinyanext.WebApi.Gestao.Voucher.Publico.csproj" />
-    <Project Path="src/Vinyanext.WebApi.Gestao.Voucher/Vinyanext.WebApi.Gestao.Voucher.csproj" />
-    <Project Path="src/Vinyanext.WebApi.Pessoal/Vinyanext.WebApi.Pessoal.csproj" />
+  </Folder>
+  <Folder Name="/src-01/">
     <Project Path="src/Vinyanext.WebApi.Sistema/Vinyanext.WebApi.Sistema.csproj" />
+  </Folder>
+  <Folder Name="/src-02/">
+    <Project Path="src/Vinyanext.WebApi.Almoxarifado/Vinyanext.WebApi.Almoxarifado.csproj" />
+  </Folder>
+  <Folder Name="/src-03/">
+    <Project Path="src/Vinyanext.WebApi.Comercial/Vinyanext.WebApi.Comercial.csproj" />
+  </Folder>
+  <Folder Name="/src-04/">
+    <Project Path="src/Vinyanext.WebApi.Compras/Vinyanext.WebApi.Compras.csproj" />
+  </Folder>
+  <Folder Name="/src-05/">
+    <Project Path="src/Vinyanext.WebApi.Contabilidade/Vinyanext.WebApi.Contabilidade.csproj" />
+  </Folder>
+  <Folder Name="/src-06/">
+    <Project Path="src/Vinyanext.WebApi.Financeiro/Vinyanext.WebApi.Financeiro.csproj" />
+  </Folder>
+  <Folder Name="/src-07/">
+    <Project Path="src/Vinyanext.WebApi.Pessoal/Vinyanext.WebApi.Pessoal.csproj" />
+  </Folder>
+  <Folder Name="/src-08/">
+    <Project Path="src/Vinyanext.WebApi.Gestao.Voucher/Vinyanext.WebApi.Gestao.Voucher.csproj" />
+    <Project Path="src/Vinyanext.WebApi.Gestao.Voucher.Publico/Vinyanext.WebApi.Gestao.Voucher.Publico.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/Vinyanext.Tests/Vinyanext.Tests.csproj" />
