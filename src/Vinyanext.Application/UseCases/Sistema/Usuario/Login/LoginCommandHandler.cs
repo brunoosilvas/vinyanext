@@ -5,6 +5,7 @@ using Vinyanext.Application.Abstractions.Messaging;
 using Vinyanext.Application.Abstractions.Services.Sistema;
 using Vinyanext.Domain.Dtos.Out.Sistema;
 using Vinyanext.Shared.Commons;
+using Vinyanext.Shared.Constants;
 
 namespace Vinyanext.Application.UseCases.Sistema.Usuario.Login;
 
@@ -18,22 +19,32 @@ public sealed class LoginCommandHandler(
     {
         using var context = changeDbContext(DbType.PgsqlVinyanextWrite);
 
-        var tt = await loginService
-            .Set(context)
-            .Login(command.Login.Cpf, command.Login.Senha, cancellationToken);
+        LoginOut login = null;
 
-        Guid guid = Guid.NewGuid();
-
-        try
+        if (string.Equals(Authentications.Token, command.Login.Tipo, StringComparison.OrdinalIgnoreCase))
         {
+            var resultado = await loginService
+                .Set(context)
+                .Login(command.Login.Cpf, command.Login.Senha, cancellationToken);
+
+            if (resultado.IsFailure) {
+                return Result.Failure<LoginOut>(resultado.Error);
+            }
+
+            Guid guid = Guid.NewGuid();
+
+            login = new(
+                Token: tokenProvider.Create(resultado.Value),
+                RefreshToken: guid.ToString()
+            );
 
         }
-        catch (Exception) { }
+        else
+        {
 
-        LoginOut login = new(
-            Token: tokenProvider.Create(null),
-            RefreshToken: guid.ToString()
-        );
+
+        }
+
         return login;
     }
 }

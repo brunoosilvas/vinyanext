@@ -4,9 +4,9 @@
   "settings": {
     "width": 10000,
     "height": 10000,
-    "scrollTop": -745,
-    "scrollLeft": -453.9772,
-    "zoomLevel": 0.88,
+    "scrollTop": 0,
+    "scrollLeft": 0,
+    "zoomLevel": 1,
     "show": 431,
     "database": 4,
     "databaseName": "",
@@ -394,25 +394,6 @@
           "createAt": 1745198879725
         }
       },
-      "pEfGNJsuh0pywQjRRkzcy": {
-        "id": "pEfGNJsuh0pywQjRRkzcy",
-        "name": "gctb_lote_item",
-        "comment": "",
-        "columnIds": [],
-        "seqColumnIds": [],
-        "ui": {
-          "x": 22.4545,
-          "y": 1053.5153,
-          "zIndex": 198,
-          "widthName": 80,
-          "widthComment": 60,
-          "color": "#8BC34A"
-        },
-        "meta": {
-          "updateAt": 1748211224292,
-          "createAt": 1745198907121
-        }
-      },
       "cI3sf31UCLgVO0Q82YPMs": {
         "id": "cI3sf31UCLgVO0Q82YPMs",
         "name": "gpes_funcionario",
@@ -726,34 +707,6 @@
           "createAt": 1747279119850
         }
       },
-      "C-qF7MCqRjJqqMt1663Ze": {
-        "id": "C-qF7MCqRjJqqMt1663Ze",
-        "identification": false,
-        "relationshipType": 16,
-        "startRelationshipType": 2,
-        "start": {
-          "tableId": "ZUbtsyHJUzStnGiygzJ1J",
-          "columnIds": [
-            "XUk-FSSF5zkkrXQEoNN5b"
-          ],
-          "x": 199.5906,
-          "y": 526.9545,
-          "direction": 4
-        },
-        "end": {
-          "tableId": "ldH_8k7bOGIoV3Z2FNLb9",
-          "columnIds": [
-            "erZKpka5nhzRwbm-5ZKg5"
-          ],
-          "x": 261.5,
-          "y": 386,
-          "direction": 8
-        },
-        "meta": {
-          "updateAt": 1748782447765,
-          "createAt": 1748782447765
-        }
-      },
       "wGS8G4tIT_tR9w4M6vgQr": {
         "id": "wGS8G4tIT_tR9w4M6vgQr",
         "identification": false,
@@ -800,22 +753,6 @@
         "meta": {
           "updateAt": 1748702046688,
           "createAt": 1745197294026
-        }
-      },
-      "JUMkS_ZluVF9iKvQoU0sH": {
-        "id": "JUMkS_ZluVF9iKvQoU0sH",
-        "value": "GCPO - módulo\n\ncompartilhado\n\ngcpo_*",
-        "ui": {
-          "x": 172,
-          "y": 16.1364,
-          "zIndex": 9,
-          "width": 116,
-          "height": 100,
-          "color": "#F44336"
-        },
-        "meta": {
-          "updateAt": 1748781465849,
-          "createAt": 1745197331349
         }
       },
       "67I2Av3CrizzoMbg7Njas": {
@@ -916,7 +853,7 @@
       },
       "S7lHZy82AoOmIoB4nm66v": {
         "id": "S7lHZy82AoOmIoB4nm66v",
-        "value": "GSEC - módulo\n\ngestão\n\ngsto_*",
+        "value": "GSEC - módulo\n\nsecretaria\n\ngsec_*",
         "ui": {
           "x": 1034.9196,
           "y": 12.1213,
@@ -926,7 +863,7 @@
           "color": "#607D8B"
         },
         "meta": {
-          "updateAt": 1748781817107,
+          "updateAt": 1749399928748,
           "createAt": 1748702628745
         }
       }

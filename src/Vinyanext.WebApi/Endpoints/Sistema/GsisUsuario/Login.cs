@@ -19,12 +19,15 @@ internal sealed class Login : IEndpoint
 
             Result<LoginOut> result = await sender.Send(command, cancellationToken);
 
-            return result.Match(Results.Ok, CustomResults.Problem);
+            return result.Match(Results.Created, CustomResults.Problem);
         })
         .AllowAnonymous()
         .WithTags("Autenticação")
+        .WithSummary("/login")
         .WithDescription("Teste de descrição")
-        .WithSummary("anonymous")
+        .Produces<LoginOut>(StatusCodes.Status201Created)
+        .Produces(StatusCodes.Status400BadRequest)
+        .Produces(StatusCodes.Status500InternalServerError)
         .WithOpenApi();
     }
 }

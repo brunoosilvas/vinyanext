@@ -18,7 +18,7 @@ public class LoginService(
 {
     public IApplicationDbContextBase Context { get; set; } = null!;
 
-    public async Task<Result<LoginOut>> Login(string cpf, string senha, CancellationToken cancellationToken)
+    public async Task<Result<GsisUsuario>> Login(string cpf, string senha, CancellationToken cancellationToken)
     {
         GsisUsuario? usuario = await Context.GsisUsuario
             .AsNoTracking()
@@ -26,16 +26,16 @@ public class LoginService(
 
         if (usuario is null)
         {
-            return Result.Failure<LoginOut>(GsisUsuarioErros.NaoEncontrado(localizer));
+            return Result.Failure<GsisUsuario>(GsisUsuarioErros.NaoEncontrado(localizer));
         }
 
         bool saoIguais = passwordProvider.Verify(senha, usuario.Senha);
 
         if (!saoIguais)
         {
-            return Result.Failure<LoginOut>(GsisUsuarioErros.NaoAutorizado(localizer));
+            return Result.Failure<GsisUsuario>(GsisUsuarioErros.NaoAutorizado(localizer));
         }
 
-        return null;
+        return usuario;
     }
 }

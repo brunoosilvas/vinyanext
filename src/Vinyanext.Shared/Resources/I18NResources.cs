@@ -1,3 +1,3 @@
 namespace Vinyanext.Shared.Resources;
 
-public class I18NResources{ }
+public class I18NResources { }

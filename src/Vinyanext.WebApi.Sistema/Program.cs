@@ -26,7 +26,10 @@ app.MapEndpoints();
 app.MapOpenApi();
 
 app.UseSwaggerUI(options =>
-    options.SwaggerEndpoint("openapi/v1.json", "Vinyanext Sistema v1"));
+{
+    options.SwaggerEndpoint("openapi/v1.json", "Vinyanext Sistema v1");
+    options.SupportedSubmitMethods([]);
+});
 
 app.UseReDoc(options => {
     options.RoutePrefix = "redoc";

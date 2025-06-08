@@ -34,12 +34,14 @@ app.MapEndpoints();
 
 app.MapOpenApi();
 
-app.UseSwaggerUI(options => {
+app.UseSwaggerUI(options =>
+{
     options.SwaggerEndpoint("/openapi/v1.json", "Vinyanext Gateway v1");
     options.SwaggerEndpoint("/api-almoxarifado/openapi/v1.json", "Vinyanext Almoxarifado v1");
     options.SwaggerEndpoint("/api-gestao-voucher/openapi/v1.json", "Vinyanext Gestão Voucher v1");
     options.SwaggerEndpoint("/api-gestao-voucher-publico/openapi/v1.json", "Vinyanext Gestão Voucher Público v1");
     options.SwaggerEndpoint("/api-sistema/openapi/v1.json", "Vinyanext Sistema v1");
+    options.SupportedSubmitMethods([]);
 });
 
 // Redoc
@@ -71,7 +73,6 @@ app.UseReDoc(options => {
     options.RoutePrefix = "redoc-sistema";
     options.SpecUrl("/api-sistema/openapi/v1.json");
 });
-
 
 // Scalar
 

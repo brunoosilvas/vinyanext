@@ -1,6 +1,0 @@
-@Vinyanext.WebApi.Sistema_HostAddress = http://localhost:5010
-
-GET {{Vinyanext.WebApi.Sistema_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

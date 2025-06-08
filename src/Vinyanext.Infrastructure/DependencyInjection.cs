@@ -33,13 +33,13 @@ public static class DependencyInjection
             .AddLocalization()
             .AddCache(configuration)
             .AddDatabase(configuration)
-            .AddMongo(configuration);
+            .AddMongo(configuration)
+            .AddHangfire(configuration);
 
         if (isGateway)
         {
             services
                 .AddHealthChecks(configuration)
-                .AddHangfire(configuration)
                 .AddAuthenticationInternal(configuration)
                 .AddAuthorizationInternal();
         }
@@ -154,12 +154,20 @@ public static class DependencyInjection
                     options: new PostgreSqlStorageOptions
                     {
                         SchemaName = Databases.Schema,
-                        PrepareSchemaIfNecessary = true,
+                        PrepareSchemaIfNecessary = true
                     }
                 );
         });
 
-        services.AddHangfireServer();
+        // aqui podemos registrar servidores diferentes para cada api
+        services.AddHangfireServer(options =>
+        {
+            options.WorkerCount = 5;
+            options.Queues = [
+                "default"
+            ];
+        });
+        //services.AddHangfireServer();
 
         return services;
     }
