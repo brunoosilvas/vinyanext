@@ -1,6 +1,5 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
-using Serilog;
 using Serilog.Context;
 using Vinyanext.Shared.Commons;
 

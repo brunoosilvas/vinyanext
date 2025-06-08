@@ -27,16 +27,17 @@ public sealed class LoginCommandHandler(
                 .Set(context)
                 .Login(command.Login.Cpf, command.Login.Senha, cancellationToken);
 
-            if (resultado.IsFailure) {
+            if (resultado.IsFailure)
+            {
                 return Result.Failure<LoginOut>(resultado.Error);
             }
 
-            Guid guid = Guid.NewGuid();
 
-            login = new(
-                Token: tokenProvider.Create(resultado.Value),
-                RefreshToken: guid.ToString()
-            );
+
+            // login = new(
+            //     Token: tokenProvider.Create(resultado.Value),
+            //     RefreshToken: guid.ToString()
+            // );
 
         }
         else
