@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Vinyanext.Infrastructure\Vinyanext.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\Vinyanext.Infrastructure\Vinyanext.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

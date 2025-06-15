@@ -1,6 +1,4 @@
-using System;
-
-namespace Vinyanext.Application.Abstractions.Database;
+namespace Vinyanext.Application.Abstractions.Databases;
 
 public enum DbType
 {

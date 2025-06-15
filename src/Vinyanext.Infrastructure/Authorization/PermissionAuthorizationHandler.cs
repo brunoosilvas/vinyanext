@@ -17,7 +17,7 @@ internal sealed class PermissionAuthorizationHandler(
     {
         HttpContext httpContext = httpContextAccessor.HttpContext;
 
-        if (Polices.Publico.Equals(requirement.Permission) ||
+        if (Polices.Publica.Equals(requirement.Permission) ||
             httpContext.Request.Path.Value.EndsWith("openapi/v1.json", StringComparison.OrdinalIgnoreCase))
         {
             context.Succeed(requirement);

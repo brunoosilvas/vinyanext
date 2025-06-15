@@ -13,7 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
 using StackExchange.Redis;
 using Vinyanext.Application.Abstractions.Authentication;
-using Vinyanext.Application.Abstractions.Database;
+using Vinyanext.Application.Abstractions.Databases;
 using Vinyanext.Infrastructure.Abstractions.Services;
 using Vinyanext.Infrastructure.Authentication;
 using Vinyanext.Infrastructure.Authorization;

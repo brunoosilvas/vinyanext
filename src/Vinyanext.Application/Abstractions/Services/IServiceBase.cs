@@ -1,4 +1,4 @@
-using Vinyanext.Application.Abstractions.Database;
+using Vinyanext.Application.Abstractions.Databases;
 
 namespace Vinyanext.Application.Abstractions.Services;
 

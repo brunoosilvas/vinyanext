@@ -30,6 +30,7 @@ public static class MiddlewareExtensions
 
             options.ApplyCurrentCultureToResponseHeaders = true;
         });
+
         return app;
     }
 

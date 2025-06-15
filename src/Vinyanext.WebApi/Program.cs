@@ -1,13 +1,14 @@
-using System.Reflection;
-using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Hangfire;
+using HealthChecks.UI.Client;
 using Scalar.AspNetCore;
 using Serilog;
 using Vinyanext.Application;
 using Vinyanext.Infrastructure;
+using Vinyanext.Infrastructure.Extensions;
 using Vinyanext.WebApi;
 using Vinyanext.WebApi.Extensions;
-using Hangfire;
+using System.Reflection;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 

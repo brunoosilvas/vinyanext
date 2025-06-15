@@ -1,3 +1,3 @@
-namespace Vinyanext.Application.Abstractions.Database;
+namespace Vinyanext.Application.Abstractions.Databases;
 
 public delegate IApplicationDbContextBase ChangeDbContext(DbType type);

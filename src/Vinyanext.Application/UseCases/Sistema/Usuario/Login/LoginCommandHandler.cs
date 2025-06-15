@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Caching.Distributed;
 using Vinyanext.Application.Abstractions.Authentication;
-using Vinyanext.Application.Abstractions.Database;
+using Vinyanext.Application.Abstractions.Databases;
 using Vinyanext.Application.Abstractions.Messaging;
 using Vinyanext.Application.Abstractions.Services.Sistema;
 using Vinyanext.Domain.Dtos.Out.Sistema;

@@ -7,37 +7,37 @@
         {
             "name": "Vyn Dev Group All",
             "configurations": [
-                "Vyn Dev GatewayApi",
-                "Vyn Dev AlmoxarifadoApi",
-                "Vyn Dev SistemaApi"
+                "Vyn Dev Gateway Api",
+                "Vyn Dev Almoxarifado Api",
+                "Vyn Dev Sistema Api"
             ]
         },
         {
             "name": "Vyn Dev Group Sistema Api",
             "configurations": [
-                "Vyn Dev GatewayApi",
-                "Vyn Dev SistemaApi"
+                "Vyn Dev Gateway Api",
+                "Vyn Dev Sistema Api"
             ]
         },
         {
             "name": "Vyn Dev Group Almoxarifado Api",
             "configurations": [
-                "Vyn Dev GatewayApi",
-                "Vyn Dev AlmoxarifadoApi"
+                "Vyn Dev Gateway Api",
+                "Vyn Dev Almoxarifado Api"
             ]
         },
         {
             "name": "Vyn Dev Group Gestão Voucher Api",
             "configurations": [
-                "Vyn Dev GatewayApi",
-                "Vyn Dev GestaoVoucherApi",
-                "Vyn Dev GestaoVoucherPublicoApi"
+                "Vyn Dev Gateway Api",
+                "Vyn Dev Gestao Voucher Api",
+                "Vyn Dev Gestao Voucher Publico Api"
             ]
         },
     ],
     "configurations": [
         {
-            "name": "Vyn Dev GatewayApi",
+            "name": "Vyn Dev Gateway Api",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
@@ -54,7 +54,7 @@
             }
         },
         {
-            "name": "Vyn Dev SistemaApi",
+            "name": "Vyn Dev Sistema Api",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
@@ -67,7 +67,7 @@
             }
         },
         {
-            "name": "Vyn Dev AlmoxarifadoApi",
+            "name": "Vyn Dev Almoxarifado Api",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
@@ -80,7 +80,7 @@
             }
         },
         {
-            "name": "Vyn Dev GestaoVoucherApi",
+            "name": "Vyn Dev Gestao Voucher Api",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
@@ -93,11 +93,11 @@
             }
         },
         {
-            "name": "Vyn Dev GestaoVoucherPublicoApi",
+            "name": "Vyn Dev Gestao Voucher Publico Api",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/src/Vinyanext.WebApi.Gestao.Voucher.Publico/bin/x64/Debug/net9.0/Vinyanext.WebApi.Gestao.Voucher.Publico.dll",
+            "program": "${workspaceFolder}/src/Vinyanext.WebApi.Gestao.Voucher.Publica/bin/x64/Debug/net9.0/Vinyanext.WebApi.Gestao.Voucher.Publica.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/Vinyanext.WebApi.Gestao.Voucher.Publico",
             "stopAtEntry": false,

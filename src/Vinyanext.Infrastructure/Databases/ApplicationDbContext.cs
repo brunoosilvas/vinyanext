@@ -1,6 +1,6 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Vinyanext.Application.Abstractions.Database;
+using Vinyanext.Application.Abstractions.Databases;
 using Vinyanext.Domain.Entities.Sistema;
 using Vinyanext.Shared.Abstractions;
 using Vinyanext.Shared.Commons;

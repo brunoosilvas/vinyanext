@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Vinyanext.Domain.Entities.Sistema;
 
-namespace Vinyanext.Application.Abstractions.Database;
+namespace Vinyanext.Application.Abstractions.Databases;
 
 public interface IApplicationDbContextBase : IDisposable
 {

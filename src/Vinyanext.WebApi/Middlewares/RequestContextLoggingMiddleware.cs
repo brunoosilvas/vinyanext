@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Extensions.Primitives;
 using Serilog.Context;
 
@@ -6,7 +5,7 @@ namespace Vinyanext.WebApi.Middlewares;
 
 public class RequestContextLoggingMiddleware(RequestDelegate next)
 {
-    private const string CorrelationIdHeaderName = "Correlation-Id";
+    private const string CorrelationIdHeaderName = "X-Correlation-Id";
 
     public Task Invoke(HttpContext context)
     {

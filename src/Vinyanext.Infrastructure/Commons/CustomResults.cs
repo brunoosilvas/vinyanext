@@ -1,6 +1,7 @@
+using Microsoft.AspNetCore.Http;
 using Vinyanext.Shared.Commons;
 
-namespace Vinyanext.WebApi.Commons;
+namespace Vinyanext.Infrastructure.Commons;
 
 public static class CustomResults
 {
@@ -17,7 +18,7 @@ public static class CustomResults
             type: GetType(result.Error.Type),
             statusCode: GetStatusCode(result.Error.Type),
             extensions: GetErrors(result));
-            
+
         return newResult;
 
         static string GetTitle(Error error) =>

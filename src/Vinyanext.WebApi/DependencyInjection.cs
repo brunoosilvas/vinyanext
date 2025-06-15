@@ -1,4 +1,4 @@
-using Vinyanext.WebApi.Infrastructure;
+using Vinyanext.WebApi.Handlers;
 
 namespace Vinyanext.WebApi;
 

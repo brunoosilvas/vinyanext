@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Vinyanext.WebApi.Infrastructure;
+namespace Vinyanext.WebApi.Handlers;
 
-internal sealed class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger)
-    : IExceptionHandler
+internal sealed class GlobalExceptionHandler(
+    ILogger<GlobalExceptionHandler> logger
+    ) : IExceptionHandler
 {
     public async ValueTask<bool> TryHandleAsync(
         HttpContext httpContext,
@@ -18,7 +19,7 @@ internal sealed class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> log
             Status = StatusCodes.Status500InternalServerError,
             Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.6.1",
             Title = "Server failure",
-            Detail = exception.StackTrace            
+            Detail = exception.StackTrace
         };
 
         httpContext.Response.StatusCode = problemDetails.Status.Value;
