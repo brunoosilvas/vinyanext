@@ -9,6 +9,10 @@ using Vinyanext.Infrastructure.Extensions;
 using Vinyanext.WebApi;
 using Vinyanext.WebApi.Extensions;
 using System.Reflection;
+using OpenTelemetry.Trace;
+using OpenTelemetry.Metrics;
+using OpenTelemetry.Exporter;
+using OpenTelemetry;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -22,12 +26,23 @@ builder.Services
 builder.Services.AddReverseProxy()
     .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
 
+builder.Services.AddOpenTelemetry()
+    .WithMetrics(configure =>
+    {
+        configure
+            .AddHttpClientInstrumentation()
+            .AddAspNetCoreInstrumentation();
+    });
+
+
 builder.Services
     .AddEndpoints(Assembly.GetExecutingAssembly());
 
 WebApplication app = builder.Build();
 
 app.UsePathBase("/api");
+
+//app.UseOpenTelemetryPrometheusScrapingEndpoint();
 
 app.UseIntercionalization();
 
