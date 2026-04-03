@@ -17,7 +17,7 @@ internal sealed class TokenProvider(
     IDistributedCache cache
     ) : ITokenProvider
 {
-    public async Task<(string token, string refreshTotken)> Create(GsisUsuario usuario)
+    public async Task<(string token, string refreshTotken)> Create(Usuario usuario)
     {
         string secretKey = configuration["Jwt:Secret"]!;
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));

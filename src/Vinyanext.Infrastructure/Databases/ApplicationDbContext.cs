@@ -11,7 +11,7 @@ namespace Vinyanext.Infrastructure.Database;
 public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IPublisher publisher)
     : DbContext(options), IApplicationDbContextBase
 {
-    public DbSet<GsisUsuario> GsisUsuario { get; private set; }
+    public DbSet<Usuario> GsisUsuario { get; private set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

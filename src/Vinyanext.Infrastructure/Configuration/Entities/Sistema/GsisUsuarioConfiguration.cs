@@ -4,9 +4,9 @@ using Vinyanext.Domain.Entities.Sistema;
 
 namespace Vinyanext.Infrastructure.Configuration.Entities.Sistema;
 
-internal sealed class GsisUsuarioConfiguration : IEntityTypeConfiguration<GsisUsuario>
+internal sealed class GsisUsuarioConfiguration : IEntityTypeConfiguration<Usuario>
 {
-    public void Configure(EntityTypeBuilder<GsisUsuario> builder)
+    public void Configure(EntityTypeBuilder<Usuario> builder)
     {
         builder.ToTable("gsis_usuario");
         builder.HasKey(t => t.Id);

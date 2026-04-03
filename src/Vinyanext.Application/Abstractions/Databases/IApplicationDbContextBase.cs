@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using Vinyanext.Domain.Entities.Sistema;
+using Vinyanext.Domain.Entities.Gsis;
 
 namespace Vinyanext.Application.Abstractions.Databases;
 
 public interface IApplicationDbContextBase : IDisposable
 {
-    DbSet<GsisUsuario> GsisUsuario { get; }
+    DbSet<Usuario> Usuario { get; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }

@@ -10,4 +10,10 @@
     <ProjectReference Include="..\Vinyanext.Shared\Vinyanext.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Abstractions\Repositories\Gsis\" />
+    <Folder Include="Constants\" />
+    <Folder Include="Queries\Gsis\" />
+  </ItemGroup>
+
 </Project>
