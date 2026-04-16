@@ -3,7 +3,7 @@ using Vinyanext.Infrastructure.Abstractions.Endpoints;
 
 namespace Vinyanext.WebApi.Sistema.Endpoints.GsisUsuario;
 
-internal sealed class Login : IEndpoint
+internal sealed class Autenticacao : IEndpoint
 {
     public sealed record Request(string Email, string Password);
     

@@ -2,7 +2,7 @@ using Vinyanext.Infrastructure.Abstractions.Endpoints;
 
 namespace Vinyanext.WebApi.Sistema.Endpoints.GsisUsuario;
 
-internal sealed class Adicionar : IEndpoint
+internal sealed class Adicao : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {

@@ -25,10 +25,10 @@
     <Project Path="src/Vinyanext.Shared/Vinyanext.Shared.csproj" />
     <Project Path="src/Vinyanext.WebApi/Vinyanext.WebApi.csproj" />
   </Folder>
-  <Folder Name="/src-01-gsis/">
-    <Project Path="src-01-gsis/Vinyanext.WebApi.Gsis/Vinyanext.WebApi.Gsis.csproj" />
-  </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/Vinyanext.Tests/Vinyanext.Tests.csproj" />
+  </Folder>
+  <Folder Name="/src-gsis/">
+    <Project Path="src-gsis/Vinyanext.WebApi.Gsis/Vinyanext.WebApi.Gsis.csproj" />
   </Folder>
 </Solution>

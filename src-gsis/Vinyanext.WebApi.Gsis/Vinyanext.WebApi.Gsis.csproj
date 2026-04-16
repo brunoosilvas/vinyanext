@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Platforms>x64</Platforms>
+    <PlatformTarget>x64</PlatformTarget>
+    <Configurations>Dev;Staging;Production</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Commons\" />
+    <Folder Include="Infrastructure\" />
+    <Folder Include="Middlewares\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Vinyanext.Infrastructure\Vinyanext.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

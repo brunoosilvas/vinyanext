@@ -1,6 +1,6 @@
 namespace Vinyanext.WebApi.Sistema.Endpoints.GsisUsuario;
 
-public class Atualizar
+public class Atualizacao
 {
 
 }
