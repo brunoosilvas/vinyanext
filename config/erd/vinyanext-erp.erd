@@ -321,7 +321,7 @@
       },
       "IEReSOVWssiQLYc1QMc-n": {
         "id": "IEReSOVWssiQLYc1QMc-n",
-        "name": "gfin_titulo",
+        "name": "gfin.titulo",
         "comment": "Tipo de título",
         "columnIds": [],
         "seqColumnIds": [],
@@ -334,7 +334,7 @@
           "color": "#FFEB3B"
         },
         "meta": {
-          "updateAt": 1745198813055,
+          "updateAt": 1775230828723,
           "createAt": 1745198764426
         }
       },

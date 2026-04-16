@@ -6,6 +6,7 @@
     <File Path=".editorconfig" />
     <File Path=".gitignore" />
     <File Path="docker-compose.yml" />
+	<File Path="Directory.Packages.props" />
   </Folder>
   <Folder Name="/Solution Items/config/" />
   <Folder Name="/Solution Items/config/postgresql/">
