@@ -103,22 +103,22 @@ public static class DependencyInjection
     {
         string? connectionString = configuration.GetConnectionString("PgsqlVinyanext");
 
-        services.AddDbContext<ApplicationDbContext>(
+        services.AddDbContext<DbBaseContext>(
             options => options
                 .UseNpgsql(connectionString, npgsqlOptions =>
                     npgsqlOptions.MigrationsHistoryTable(HistoryRepository.DefaultTableName, Databases.Schema))
                 .UseSnakeCaseNamingConvention());
 
-        services.AddTransient<IApplicationDbContextBase>(sp => sp.GetRequiredService<ApplicationDbContext>());
+        services.AddTransient<IDbBaseContext>(sp => sp.GetRequiredService<DbBaseContext>());
         services.AddTransient<ChangeDbContext>(sp => dbType =>
         {
-            IApplicationDbContextBase context = dbType switch
+            IDbBaseContext baseContext = dbType switch
             {
-                DbType.PgsqlVinyanextWrite => sp.GetRequiredService<IApplicationDbContextBase>(),
-                DbType.PgsqlVinyanexRead => sp.GetRequiredService<IApplicationDbContextBase>(),
-                _ => sp.GetRequiredService<IApplicationDbContextBase>()
+                DbType.PgsqlVinyanextWrite => sp.GetRequiredService<IDbBaseContext>(),
+                DbType.PgsqlVinyanexRead => sp.GetRequiredService<IDbBaseContext>(),
+                _ => sp.GetRequiredService<IDbBaseContext>()
             };
-            return context;
+            return baseContext;
         });
 
         return services;

@@ -8,14 +8,14 @@ using Vinyanext.Shared.Constants;
 
 namespace Vinyanext.Infrastructure.Database;
 
-public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IPublisher publisher)
-    : DbContext(options), IApplicationDbContextBase
+public sealed class DbBaseContext(DbContextOptions<DbBaseContext> options, IPublisher publisher)
+    : DbContext(options), IDbBaseContext
 {
     public DbSet<Usuario> GsisUsuario { get; private set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(DbBaseContext).Assembly);
 
         modelBuilder.HasDefaultSchema(Databases.Schema);
     }

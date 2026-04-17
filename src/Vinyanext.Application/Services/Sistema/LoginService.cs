@@ -15,11 +15,11 @@ public class LoginService(
     IStringLocalizer<I18NResources> localizer
     ) : ILoginService
 {
-    public IApplicationDbContextBase Context { get; set; } = null!;
+    public IDbBaseContext BaseContext { get; set; } = null!;
 
     public async Task<Result<Usuario>> Login(string cpf, string senha, CancellationToken cancellationToken)
     {
-        Usuario? usuario = await Context.GsisUsuario
+        Usuario? usuario = await BaseContext.GsisUsuario
             .AsNoTracking()
             .FirstOrDefaultAsync(u => u.Cpf == cpf, cancellationToken);
 

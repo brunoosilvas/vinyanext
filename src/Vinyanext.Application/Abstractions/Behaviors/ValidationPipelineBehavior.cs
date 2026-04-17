@@ -1,34 +1,33 @@
-using System.Reflection;
+using Vinyanext.Shared.Commons;
+using DispatchR.Abstractions.Send;
 using FluentValidation;
 using FluentValidation.Results;
-using MediatR;
-using Vinyanext.Shared.Commons;
+using System.Reflection;
 
-namespace Vinyanext.Application.Abstractions.Behaviros;
+namespace Vinyanext.Application.Abstractions.Behaviors;
 
 internal sealed class ValidationPipelineBehavior<TRequest, TResponse>(
     IEnumerable<IValidator<TRequest>> validators)
-    : IPipelineBehavior<TRequest, TResponse>
-    where TRequest : class
+    : IPipelineBehavior<TRequest, Task<TResponse>>
+    where TRequest : class, IRequest<TRequest, Task<TResponse>>
 {
-    public async Task<TResponse> Handle(
-        TRequest request,
-        RequestHandlerDelegate<TResponse> next,
-        CancellationToken cancellationToken)
+    public IRequestHandler<TRequest, Task<TResponse>> NextPipeline { get; set; }
+
+    public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken)
     {
-        ValidationFailure[] validationFailures = await ValidateAsync(request);
+        var validationFailures = await ValidateAsync(request);
 
         if (validationFailures.Length == 0)
         {
-            return await next(cancellationToken);
+            return await NextPipeline.Handle(request, cancellationToken);
         }
 
         if (typeof(TResponse).IsGenericType &&
             typeof(TResponse).GetGenericTypeDefinition() == typeof(Result<>))
         {
-            Type resultType = typeof(TResponse).GetGenericArguments()[0];
+            var resultType = typeof(TResponse).GetGenericArguments()[0];
 
-            MethodInfo? failureMethod = typeof(Result<>)
+            var failureMethod = typeof(Result<>)
                 .MakeGenericType(resultType)
                 .GetMethod(nameof(Result<object>.ValidationFailure));
 
@@ -56,12 +55,12 @@ internal sealed class ValidationPipelineBehavior<TRequest, TResponse>(
 
         var context = new ValidationContext<TRequest>(request);
 
-        ValidationResult[] validationResults = await Task.WhenAll(
+        var validationResults = await Task.WhenAll(
             validators.Select(validator => validator.ValidateAsync(context)));
 
         ValidationFailure[] validationFailures = [.. validationResults
-            .Where(validationResult => !validationResult.IsValid)
-            .SelectMany(validationResult => validationResult.Errors)];
+                .Where(validationResult => !validationResult.IsValid)
+                .SelectMany(validationResult => validationResult.Errors)];
 
         return validationFailures;
     }

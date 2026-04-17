@@ -3,11 +3,11 @@
 public enum DbType
 {
     #region Postgresql Database
-    PgsqlVinyanext,
-    PgsqlVinyanextRead,
+    PgsqlVyn,
+    PgsqlVynRead,
     #endregion
 
     #region Mongodb Database
-    MdbVinyanext
+    MdbVyn
     #endregion
 }

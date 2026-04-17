@@ -4,11 +4,11 @@ namespace Vinyanext.Application.Abstractions.Services;
 
 public interface IServiceBase<T>
 {
-    IApplicationDbContextBase Context { get; set; }
+    IDbBaseContext BaseContext { get; set; }
 
-    T Set(IApplicationDbContextBase context)
+    T Set(IDbBaseContext baseContext)
     {
-        Context = context ?? throw new ArgumentNullException(nameof(context));
+        BaseContext = baseContext ?? throw new ArgumentNullException(nameof(baseContext));
         return (T)this;
     }
 }
